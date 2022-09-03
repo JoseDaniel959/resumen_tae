@@ -6,8 +6,7 @@ import matplotlib.pyplot as plt
 def barplot_cat(df: pd.DataFrame,
                 cluster: str,
                 cols_to_graph: list):
-    """Función que realiza gráfica de un cluster dado con respecto a una columna
-    Barplot de la cantidad de cada categoría por cada columna en el cluster dado"""
+    """Barplot de la cantidad de cada categoría por cada columna en el cluster dado"""
     df_clust = df[df['label'] == cluster]
 
 
