@@ -3,11 +3,9 @@ import pandas as pd
 
 from graficos_mtlp import *
 
-cluster_1 = st.checkbox('cluster_1')
-cluster_2 = st.checkbox('cluster_2')
-cluster_3 = st.checkbox('cluster_3')
+cluster = st.radio(
+     "selecciona cluster",
+     range(4))
+df = pd.read_csv('ensayo_graficas.csv')
 
-st.pyplot(grafico_2(cluster_1, cluster_2, cluster_3))
-st.pyplot(grafico_2(cluster_1, cluster_2, cluster_3))
-st.pyplot(grafico_2(cluster_1, cluster_2, cluster_3))
-st.pyplot(grafico_2(cluster_1, cluster_2, cluster_3))
+st.pyplot(barplot_cat(df, cluster, ['CIP11BACHL', 'CIP14BACHL', 'CIP15BACHL']))
