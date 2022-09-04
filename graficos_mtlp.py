@@ -15,6 +15,7 @@ def barplot_cat(df: pd.DataFrame,
     # TODO: pendiente cambiar estos nombres
     datos = {'tipo': [], 'carrera': [], 'cantidad': []}
 
+    # TODO: Nombre de gráfica y labels
     for col in cols_to_graph:
         for key, value in df_clust[col].value_counts().to_dict().items():
             datos['tipo'].append(key)
