@@ -8,8 +8,11 @@ def barplot_cat(df: pd.DataFrame,
                 cluster: str,
                 cols_to_graph: list):
     """Barplot de la cantidad de cada categoría por cada columna en el cluster dado"""
+
+    # TODO: pendiente poner nombre de columna label
     df_clust = df[df['label'] == cluster]
 
+    # TODO: pendiente cambiar estos nombres
     datos = {'tipo': [], 'carrera': [], 'cantidad': []}
 
     for col in cols_to_graph:
