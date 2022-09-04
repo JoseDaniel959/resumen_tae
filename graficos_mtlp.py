@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 def barplot_cat(df: pd.DataFrame,
@@ -9,10 +10,22 @@ def barplot_cat(df: pd.DataFrame,
     """Barplot de la cantidad de cada categoría por cada columna en el cluster dado"""
     df_clust = df[df['label'] == cluster]
 
+    datos = {'tipo': [], 'carrera': [], 'cantidad': []}
 
-    # TODO: hacer la gráfica corresondiente la la columna col_to_graph
+    for col in cols_to_graph:
+        for key, value in df_clust[col].value_counts().to_dict().items():
+            datos['tipo'].append(key)
+            datos['carrera'].append(col)
+            datos['cantidad'].append(value)
 
-    pass
+    fig, ax = plt.subplots()
+    sns.barplot(data=datos,
+                x='tipo',
+                y='cantidad',
+                hue='carrera',
+                palette="mako")
+
+    return fig
 
 
 def boxplot_continuas(df: pd.DataFrame,
