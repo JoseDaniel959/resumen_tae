@@ -1,48 +1,36 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 
-from graficos_mtlp import *
+from tabs import *
+# from matplotlib import pyplot as plt
+# from sklearn import preprocessing
+# from sklearn.cluster import AgglomerativeClustering
+# import scipy.cluster.hierarchy as sch
+# from sklearn.cluster import KMeans
 
-cluster = st.radio(
-     "selecciona cluster",
-     range(4))
 
-carreras = {
-     'CIP11BACHL': st.checkbox('CIP11BACHL', value=True),
-     'CIP14BACHL': st.checkbox('CIP14BACHL'),
-     'CIP15BACHL': st.checkbox('CIP15BACHL'),
-     'CIP27BACHL': st.checkbox('CIP27BACHL'),
-}
-
-carreras_show = [key for key, value in carreras.items() if value]
+st.title('Aplicación web de clusters')
 
 df = pd.read_csv('ensayo_graficas.csv')
+show_clust, compare = st.tabs(["Características por cluster",
+                               "Comparar clusters"])
+with show_clust:
+    tab1, tab2, tab3, tab4 = st.tabs(
+        ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4"])
+    with tab1:
+        tab_show(0, df)
+    with tab2:
+        tab_show(1, df)
+    with tab3:
+        tab_show(2, df)
+    with tab4:
+        tab_show(3, df)
 
-st.pyplot(barplot_cat(df, cluster, carreras_show))
-
-
-"""Gráfica de los boxplot"""
-clusters = {
-     "0": st.checkbox("0", value=True),
-     "1": st.checkbox("1"),
-     "2": st.checkbox("2"),
-     "3": st.checkbox("3"),
-}
-
-continua = st.radio(
-     "Seleccione la variable",
-     ('DEBT_MDN','PCTFLOAN','GRAD_DEBT_MDN','PCIP11','PCIP15','PCIP14','PCIP27','PCTPELL')
-)
-
-clusters_show = [int(key) for key, value in clusters.items() if value]
-
-st.pyplot(boxplot_cluster_vs_continuas(df, clusters_show, continua))
-
-
-"""Gráfica de los densplot"""
-
-st.pyplot(dens_plot_continuas(df, clusters_show, continua))
-
-"""Gráfica de los violinplot"""
-
-st.pyplot(violin_plot_continuas(df, clusters_show, continua))
+with compare:
+    options = st.multiselect(
+        '¿Que cluster quieres comparar?',
+        [0, 1, 3, 4],
+        [0, 1, 3, 4])
+    #clusters = [value for value in options.values()]
+    st.write(str(options))
