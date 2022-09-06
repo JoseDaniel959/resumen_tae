@@ -37,3 +37,12 @@ continua = st.radio(
 clusters_show = [int(key) for key, value in clusters.items() if value]
 
 st.pyplot(boxplot_cluster_vs_continuas(df, clusters_show, continua))
+
+
+"""Gráfica de los densplot"""
+
+st.pyplot(dens_plot_continuas(df, clusters_show, continua))
+
+"""Gráfica de los violinplot"""
+
+st.pyplot(violin_plot_continuas(df, clusters_show, continua))
