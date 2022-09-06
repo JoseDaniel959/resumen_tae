@@ -80,7 +80,11 @@ def violin_plot_continuas(df: pd.DataFrame,
                           clusters: list,
                           col: str):
     """Comparar diferentes clusters con respecto a una columna en su densidad"""
-    # TODO
-    pass
+    df_show = df.loc[df['cluster'].isin(clusters)]
+
+    fig, ax = plt.subplots()
+    sns.violinplot(x=df_show["cluster"], y=df_show[col], palette="mako")
+    
+    return fig
 
 
