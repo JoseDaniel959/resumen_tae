@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+""""Gráficas para comparaciones entre clusters"""
 
 def barplot_cat(df: pd.DataFrame,
                 cluster: str,
@@ -44,21 +45,7 @@ def boxplot_cluster_vs_continuas(df: pd.DataFrame,
 
     return fig
 
-def boxplot_continuas(df: pd.DataFrame,
-                           cluster: list,
-                           colcat: str,
-                           colnum: str):
-    """Comparar una columna del mismo cluster contra una categorica"""
-
-    df_clust = df[df['cluster'] == cluster]
-
-    fig, ax = plt.subplots()
-    sns.boxplot(x=df[colcat], y=df[colnum], palette="mako")
-
-    return fig
-
-
-def dens_plot_continuas(df: pd.DataFrame,
+def dens_plot_cluster_vs_continuas(df: pd.DataFrame,
                         clusters: list,
                         col: str):
     """Comparar diferentes clusters con respecto a una columna en su densidad"""
@@ -76,7 +63,7 @@ def dens_plot_continuas(df: pd.DataFrame,
     return fig
 
 
-def violin_plot_continuas(df: pd.DataFrame,
+def violin_plot_cluster_vs_continuas(df: pd.DataFrame,
                           clusters: list,
                           col: str):
     """Comparar diferentes clusters con respecto a una columna en su densidad"""
@@ -86,5 +73,36 @@ def violin_plot_continuas(df: pd.DataFrame,
     sns.violinplot(x=df_show["cluster"], y=df_show[col], palette="mako")
     
     return fig
+
+""""Gráficas para comparaciones intra clusters"""
+#??? Para comparar solo discretas vs continuas?
+
+def boxplot_continuas(df: pd.DataFrame,
+                           cluster: list,
+                           colcat: str,
+                           colnum: str):
+    """Comparar una columna del mismo cluster contra una categorica"""
+
+    df_clust = df[df['cluster'] == cluster]
+
+    fig, ax = plt.subplots()
+    sns.boxplot(x=df[colcat], y=df[colnum], palette="mako")
+
+    return fig
+
+def violin_plot_continuas(df: pd.DataFrame,
+                           cluster: list,
+                           colcat: str,
+                           colnum: str):
+    """Comparar una columna discreta con respecto a una columna continua en su densidad"""
+    df_clust = df[df['cluster'] == cluster]
+
+    fig, ax = plt.subplots()
+    sns.violinplot(x=df[colcat], y=df[colnum])
+
+    return fig
+
+
+
 
 

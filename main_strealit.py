@@ -41,8 +41,8 @@ st.pyplot(boxplot_cluster_vs_continuas(df, clusters_show, continua))
 
 """Gráfica de los densplot"""
 
-st.pyplot(dens_plot_continuas(df, clusters_show, continua))
+st.pyplot(dens_plot_cluster_vs_continuas(df, clusters_show, continua))
 
 """Gráfica de los violinplot"""
 
-st.pyplot(violin_plot_continuas(df, clusters_show, continua))
+st.pyplot(violin_plot_cluster_vs_continuas(df, clusters_show, continua))
