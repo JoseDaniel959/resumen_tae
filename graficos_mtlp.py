@@ -63,7 +63,17 @@ def dens_plot_continuas(df: pd.DataFrame,
                         col: str):
     """Comparar diferentes clusters con respecto a una columna en su densidad"""
     # TODO
-    pass
+    
+    df_show = df.loc[df['cluster'].isin(clusters)]
+
+    
+    #fig, ax = plt.subplots()
+    fig = sns.displot(df_show, x=col, hue="cluster", kind="kde")
+    #df_show.pivot(columns='cluster', values=col).plot.density(figsize = (7, 7), linewidth = 4)
+      
+    #plt.xlabel(col)
+
+    return fig
 
 
 def violin_plot_continuas(df: pd.DataFrame,
