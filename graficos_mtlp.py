@@ -34,7 +34,7 @@ def barplot_cat(df: pd.DataFrame,
 
 
 def boxplot_continuas(df: pd.DataFrame,
-                      clusters: list,
+                      cluster: list,
                       col: str):
     """Comparar diferentes clusters con respecto a una columna en su blox_plot"""
     # TODO
