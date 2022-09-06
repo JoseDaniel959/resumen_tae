@@ -32,13 +32,30 @@ def barplot_cat(df: pd.DataFrame,
 
     return fig
 
+def boxplot_cluster_vs_continuas(df: pd.DataFrame,
+                           clusters: list,
+                           colnum: str):
+    """Comparar diferentes clusters con respecto a una columna en su blox_plot"""
+
+    df_show = df.loc[df['cluster'].isin(clusters)]
+
+    fig, ax = plt.subplots()
+    sns.boxplot(x=df_show["cluster"], y=df_show[colnum], palette="mako")
+
+    return fig
 
 def boxplot_continuas(df: pd.DataFrame,
-                      cluster: list,
-                      col: str):
-    """Comparar diferentes clusters con respecto a una columna en su blox_plot"""
-    # TODO
-    pass
+                           cluster: list,
+                           colcat: str,
+                           colnum: str):
+    """Comparar una columna del mismo cluster contra una categorica"""
+
+    df_clust = df[df['cluster'] == cluster]
+
+    fig, ax = plt.subplots()
+    sns.boxplot(x=df[colcat], y=df[colnum], palette="mako")
+
+    return fig
 
 
 def dens_plot_continuas(df: pd.DataFrame,
@@ -46,7 +63,17 @@ def dens_plot_continuas(df: pd.DataFrame,
                         col: str):
     """Comparar diferentes clusters con respecto a una columna en su densidad"""
     # TODO
-    pass
+
+    df_show = df.loc[df['cluster'].isin(clusters)]
+
+
+    #fig, ax = plt.subplots()
+    fig = sns.displot(df_show, x=col, hue="cluster", kind="kde")
+    #df_show.pivot(columns='cluster', values=col).plot.density(figsize = (7, 7), linewidth = 4)
+
+    #plt.xlabel(col)
+
+    return fig
 
 
 def violin_plot_continuas(df: pd.DataFrame,
