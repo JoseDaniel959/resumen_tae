@@ -12,6 +12,8 @@ from graficos_mtlp import *
 
 
 st.title('Aplicación web de clusters')
+st.markdown('## Gráficas donde se compara variables continuas con clusters')
+st.markdown('En la siguiente aplicación se puede ver las características de cada uno de los clusters y comparar todos los clusters a la vez.')
 
 df = pd.read_csv('ensayo_graficas.csv')
 show_clust, compare = st.tabs(["Características por cluster",
@@ -24,6 +26,7 @@ with show_clust:
         #boxplot_continuas(df,)
     with tab2:
         tab_show(1, df)
+
     with tab3:
         tab_show(2, df)
     with tab4:
@@ -33,7 +36,7 @@ with compare:
     
     
     #------------------------------------------------------------
-    st.markdown('## Ver gráficos de barra')
+    
     
     #option_cluster_barplot = st.selectbox(
         #'¿Qué variable continua desea comparar?',
@@ -50,23 +53,5 @@ with compare:
 
     #barplot_cat(df,'0',['CONTROL'])
     #------------------------------------------------------
-    options = st.multiselect(
-        '¿Que cluster quieres comparar?',
-        [0, 1, 2, 3],
-        [0, 1, 2, 3])
-    #clusters = [value for value in options.values()]
-    option = st.selectbox(
-        '¿Qué variable continua desea comparar?',
-        ('DEBT_MDN','PCTFLOAN','GRAD_DEBT_MDN','PCIP11','PCIP15','PCIP14','PCIP27','PCTPELL'))
-
-    #print(option)
-
-   
+    continuas_show(df)
     
-    st.write(str(options))
-    
-    st.pyplot(boxplot_cluster_vs_continuas(df,options,option))
-    st.pyplot(dens_plot_cluster_vs_continuas(df,options,option))
-    st.pyplot(violin_plot_cluster_vs_continuas(df,options,option))
-    
-   
