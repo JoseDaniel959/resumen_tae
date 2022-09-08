@@ -19,11 +19,13 @@ show_clust, compare = st.tabs(["Características por cluster",
 with show_clust:
     tab1, tab2, tab3, tab4 = st.tabs(
         ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4"])
+
     with tab1:
         tab_show(0, df)
-        #boxplot_continuas(df,)
+
     with tab2:
         tab_show(1, df)
+
     with tab3:
         tab_show(2, df)
     with tab4:
