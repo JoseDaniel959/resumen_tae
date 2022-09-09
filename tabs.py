@@ -5,7 +5,6 @@ from metadata import Texto
 
 def tab_show(cluster, df):
 
-    st.write(Texto.caract_per_clust[cluster]['grafica1'])
     carreras = {
          'CIP11BACHL': st.checkbox('CIP11BACHL' + ' '*cluster, value=True),
          'CIP14BACHL': st.checkbox('CIP14BACHL' + ' '*cluster),
