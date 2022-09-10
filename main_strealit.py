@@ -12,7 +12,7 @@ from tabs import *
 
 st.title('Aplicación web de clusters')
 
-df = pd.read_csv('base1.csv')
+df = pd.read_csv('base1 (2).csv')
 df.rename({'Clusters': 'cluster'}, axis=1, inplace=True)
 show_clust, compare = st.tabs(["Características por cluster",
                                "Comparar clusters"])
@@ -34,9 +34,24 @@ with show_clust:
 
 
 with compare:
-    options = st.multiselect(
-        '¿Que cluster quieres comparar?',
-        [0, 1, 3, 4],
-        [0, 1, 3, 4])
-    #clusters = [value for value in options.values()]
-    st.write(str(options))
+
+
+    #------------------------------------------------------------
+
+
+    #option_cluster_barplot = st.selectbox(
+        #'¿Qué variable continua desea comparar?',
+        #('0','1','2','3'))
+
+    #options_barplot = st.multiselect(
+        #'¿Que columnas categóricas quieres comparar?',
+        #['CURROPER','CONTROL','CIP11BACHL','CIP15BACHL','CIP14BACHL','CIP27BACHL'],
+        #['CURROPER','CONTROL','CIP11BACHL','CIP15BACHL','CIP14BACHL','CIP27BACHL'])
+
+
+
+    #st.pyplot(barplot_cat(df, cluster, carreras_show))
+
+    #barplot_cat(df,'0',['CONTROL'])
+    #------------------------------------------------------
+    continuas_show(df)

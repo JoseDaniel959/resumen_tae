@@ -62,6 +62,12 @@ def dens_plot_cluster_vs_continuas(df: pd.DataFrame,
 
     return fig
 
+def melito(df, cluster, col):
+
+    df_show = df.loc[df['cluster'] == cluster]
+    fig = sns.displot(df_show, x=col, kind="kde")
+    return fig
+
 
 def violin_plot_cluster_vs_continuas(df: pd.DataFrame,
                           clusters: list,
