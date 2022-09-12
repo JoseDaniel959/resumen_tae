@@ -1,3 +1,4 @@
+from enum import unique
 import streamlit as st
 from graficos_mtlp import *
 from metadata import Texto
@@ -41,7 +42,7 @@ def continuas_show(df):
     #clusters = [value for value in options.values()]
      option = st.selectbox(
         '¿Qué variable continua desea comparar?',
-        ('DEBT_MDN','PCTFLOAN','GRAD_DEBT_MDN','PCIP11','PCIP15','PCIP14','PCIP27','PCTPELL'))
+        ('DEBT_MDN','PCTFLOAN','GRAD_DEBT_MDN','PCIP11','PCIP15','PCIP14','PCIP27','PCTPELL'),key=unique)
 
     #print(option)
 
@@ -49,15 +50,18 @@ def continuas_show(df):
 
      st.write(str(options))
      if(len(options) != 0):
-
-          st.markdown('### Boxplot de una variable continua vs clusters seleccionados')
-          st.pyplot(boxplot_cluster_vs_continuas(df,options,option))
-
-          st.markdown('### Diagrama de densidad de una variable continua vs clusters seleccionados')
-          st.pyplot(dens_plot_cluster_vs_continuas(df,options,option))
-
-          st.markdown('### Diagrama de violin de una variable continua vs clusters seleccionados')
-          st.pyplot(violin_plot_cluster_vs_continuas(df,options,option))
+            col1, col2, col3, = st.columns(3)
+            
+            with col1:
+                st.markdown('#### Boxplot de una variable continua vs clusters seleccionados')
+                st.pyplot(boxplot_cluster_vs_continuas(df,options,option))
+            with col2:
+                st.markdown('#### Diagrama de densidad de una variable continua vs clusters seleccionados')
+                st.pyplot(dens_plot_cluster_vs_continuas(df,options,option))
+            with col3:
+                st.markdown('#### Diagrama de violin de una variable continua vs clusters seleccionados')
+                st.pyplot(violin_plot_cluster_vs_continuas(df,options,option))
+        
      else:
-          st.markdown("### Seleccione algún cluster")
+            st.markdown("#### Seleccione algún cluster")
 
