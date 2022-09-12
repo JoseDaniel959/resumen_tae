@@ -109,7 +109,7 @@ def violin_plot_continuas(df: pd.DataFrame,
     return fig
 
 def grafico_torta(data):
-    labels = ['Segmento 3', 'Segmento 4', 'Segmento 1', 'Segmento 5', 'Segmento 2']
+    labels = ['Segmento 3', 'Segmento 1', 'Segmento 6', 'Segmento 5', 'Segmento 4','Segmento 2']
     colors = sns.color_palette('bright')
     fig, ax = plt.subplots()
     plt.pie(data, labels=labels,colors = colors, autopct = '%0.0f%%')

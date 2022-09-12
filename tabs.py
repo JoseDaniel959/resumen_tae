@@ -53,15 +53,15 @@ def continuas_show(df):
             col1, col2, col3, = st.columns(3)
             
             with col1:
-                st.markdown('#### Boxplot de una variable continua vs clusters seleccionados')
+                st.markdown('##### Boxplot de una variable continua vs clusters seleccionados')
                 st.pyplot(boxplot_cluster_vs_continuas(df,options,option))
             with col2:
-                st.markdown('#### Diagrama de densidad de una variable continua vs clusters seleccionados')
+                st.markdown('##### Diagrama de densidad de una variable continua vs clusters seleccionados')
                 st.pyplot(dens_plot_cluster_vs_continuas(df,options,option))
             with col3:
-                st.markdown('#### Diagrama de violin de una variable continua vs clusters seleccionados')
+                st.markdown('##### Diagrama de violin de una variable continua vs clusters seleccionados')
                 st.pyplot(violin_plot_cluster_vs_continuas(df,options,option))
         
      else:
-            st.markdown("#### Seleccione algún cluster")
+            st.markdown("##### Seleccione algún cluster")
 

@@ -20,7 +20,7 @@ st.set_page_config(layout="wide", page_title="Aplicación web de clusters", page
 #st.title('Aplicación web de clusters')
 
 
-st.title('Aplicación web de clusters')
+st.title('Aplicación web de segmentos de universidades en EEUU')
 
 col1, col2, col3,col4 = st.columns(4)
 with col1:
@@ -33,16 +33,20 @@ with col3:
 
 
 st.markdown('## Propósito')
-st.markdown('El departamento de Estados Unidos comparte información al público sobre las universidades del país, para que puedan tomar una decisión al momento de elegir una. El propósito de esta aplicación web es ayudar a la gente que  ')
+st.markdown('El departamento de Estados Unidos comparte información al público sobre las universidades del país, para que puedan tomar una decisión al momento de elegir una. El propósito de esta aplicación web es ayudar a los que deseen estudiar, escoger una universidad. ')
 
-st.markdown('El propósito de esta aplicación es que los que deseen estudiar se puedan basar en estos criterios:')
-st.markdown('- Tipo de universidad: ya si sea pública privada o privada con ánimo de lucro')
-st.markdown('- Los que deseen estudiar Computación,ingeniería,ingeniería y tecnología o matemáticas')
-st.markdown('- Modalidad de estudio: presencial o virtual')
-st.markdown('- Porcentaje de estudiantes que reciben prestamos: Pell Grant o Loan')
-st.markdown('En esta aplicación web se podrá ver las características de cada uno cluster. Además se puede comparar todas las características de los clusters ')
+st.markdown('Para la selección de la universidad, se debe basar en los siguiente criterios:')
+st.markdown('- **Tipo de universidad**: ya si sea pública privada o privada con ánimo de lucro.')
+st.markdown('- **Tipo de carrera:** Los que deseen estudiar Computación,ingeniería,ingeniería y tecnología o matemáticas.')
+st.markdown('- **Modalidad de estudio:** presencial o virtual.')
+st.markdown('- **Porcentaje de estudiantes que reciben prestamos:** Pell Grant o Loan.')
+st.markdown('En base a los criterios se dividieron a las universidades en 6 segmentos.En esta aplicación web se podrá ver las características de cada uno segmentos. Además se puede comparar todas las características de los segmentos juntos')
 
-st.markdown('## Clusters')
+st.markdown('### Información adicional')
+st.markdown('Se proporciona la siguiente información,para que el aspirante se pueda informar más y tomar una mejor decisión')
+
+
+st.markdown('## Segmentos')
 
 
 
@@ -53,28 +57,58 @@ show_clust, compare = st.tabs(["Características por cluster",
                                "Comparar clusters"])
 
 coordenadas = pd.read_csv('sinNulosyConCoordenadas.csv')
-coordenadas['Cluster'] = df['clusters'] 
+coordenadas['Cluster'] = df['cluster'] 
 coordenadas = coordenadas[["LONGITUDE", "LATITUDE","INSTNM",'Cluster']].dropna(axis = 0,subset = ["LONGITUDE", "LATITUDE"])
 
 print("sin nulos")
 print(coordenadas.info())
+print(coordenadas['Cluster'].unique())
 
 
 
 def map(numeroCluster):
     
     coordenadas_show = coordenadas[coordenadas['Cluster'] == option]
-    
+    col1, col2, col3,col4, = st.columns(4)
     if(numeroCluster == 0):
         color = [255, 0, 0]
-        st.markdown('### Características del Cluster 0')
-        st.markdown('Mucho texto mucho texto mucho texto este cluster tiene las siguientes características')
-        st.markdown('- Daniel daza encias')
-        st.markdown('- fdafdfadfas')
-        st.markdown('Mucho texto mucho texto mucho texto este cluster tiene las siguientes características')
-        st.markdown('Siente mi aliento, sexoooo quiero yoooo')       
-
+        cheap = Image.open('cheap.png')
+        loans = Image.open('noloans.webp')
+        bachelordegree = Image.open('bachelordegree.png')
+        arrowDown = Image.open('arrowD.png')
+        st.markdown('### Características del Segmento 1')
+        with col1:
+            st.image(cheap,width=100)
+            st.markdown('Universidades Públicas, más baratas')
+        with col2:
+            st.image(loans,width=100)
+            st.markdown(' Menos prestamos federales')
+        with col3:
+            st.image(bachelordegree,width=100)
+            st.markdown('Menos carreras de interés')
+        with col4:
+            st.image(arrowDown,width=100)
+            st.markdown('Poca gente graduada de estas universidades')
+      
+        
     elif(numeroCluster == 1):
+        st.markdown('### Características del Segmento 2')
+        cheap = Image.open('cheap.png')
+        loans = Image.open('noloans.webp')
+        bachelordegree = Image.open('bachelordegree.png')
+        arrowDown = Image.open('arrowD.png')
+        with col1:
+            st.image(cheap,width=100)
+            st.markdown('Universidades Públicas, más baratas')
+        with col2:
+            st.image(loans,width=100)
+            st.markdown(' Menos prestamos federales')
+        with col3:
+            st.image(bachelordegree,width=100)
+            st.markdown('Menos carreras de interés')
+        with col4:
+            st.image(arrowDown,width=100)
+            st.markdown('Poca gente graduada de estas universidades')
         color = [0, 255, 0]
     elif(numeroCluster == 2):
         color = [0, 0, 255]
@@ -83,6 +117,7 @@ def map(numeroCluster):
     elif(numeroCluster == 4):
         color = [255, 0, 255]
     elif(numeroCluster == 5):
+        print("Entro")
         color = [0, 255, 255]                  
     
     layer = pdk.Layer(
@@ -124,7 +159,7 @@ with st.sidebar:
 
 with show_clust:
     tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
-        ["Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5", "Cluster 6"])
+        ["Segmento 1", "Segmento 2", "Segmento 3", "Segmento 4", "Segmento 5", "Segmento 6"])
     with tab1:
         tab_show(0, df)
     with tab2:
@@ -147,54 +182,50 @@ with compare:
     col4,col5 = st.columns(2)
     
     with col4:
-        data = df['clusters'].value_counts()
-        st.pyplot(grafico_torta(data))
-    with col5:
         st.markdown('#### Información sobre los segmentos')
         st.markdown('')
         st.markdown('##### Segmento 1')
-        st.markdown('Este segmento contiene las universidades que son públicas y')
+        st.markdown('Compuesto por universidades públicas, en donde está el menor porcentaje de estudiantes con un préstamo federal y por tanto la menor deuda media. Sin embargo es el segmento que contiene las universidades con menor oferta de las carreras de interés, por ende es donde menor cantidad de estudiantes graduados en dichos pregrados hay.')
         st.markdown('##### Segmento 2')
-
-        st.markdown('##### Segmento 3')
-
-        st.markdown('##### Segmento 4')
+        st.markdown('Compuesto por universidades en su mayoría privadas con ánimo de lucros y poseen un mayor porcentaje de estudiantes tanto con préstamo federal como con beca Pell Grants, debido a esto sus estudiantes tienen una deuda media mayor que los segmento 0 y 2 y es el de mayor deuda media de sus estudiantes graduados (junto con los segmento 3 y 4). En este segmento es donde se encuentran las universidades con más oferta presencial de los campos de computación e ingeniería y tecnología, además es donde mayor porcentaje de estudiantes graduados en computación, ingeniería y tecnología y matemáticas hay.')
+    with col5:
+        data = coordenadas['Cluster'].value_counts()
+        print(data)
+        st.pyplot(grafico_torta(data))
         
-        st.markdown('##### Segmento 5')
+        
+        
+    col6,col7,col8,col9 = st.columns(4)
     
-    st.markdown('### Mapa de las universidades')
-    st.markdown('En el siguiente mapa, se puede escoger las universidadades por clusters(las universidades son los circulos). Si pone el cursor encima de la bola, saldrá el nombre de la unviersidad')
+    with col6:
+        st.markdown('##### Segmento 3')
+        st.markdown('Compuesto por universidades en su mayoría privadas con ánimo de lucros y poseen un mayor porcentaje de estudiantes tanto con préstamo federal como con beca Pell Grants, debido a esto sus estudiantes tienen una deuda media mayor que los segmento 0 y 2 y es el de mayor deuda media de sus estudiantes graduados (junto con los segmento 3 y 4). En este segmento es donde se encuentran las universidades con más oferta presencial de los campos de computación e ingeniería y tecnología, además es donde mayor porcentaje de estudiantes graduados en computación, ingeniería y tecnología y matemáticas hay.')
 
-    st.markdown('Hola bb')
+    with col7:
+        st.markdown('##### Segmento 4')
+        st.markdown('Compuesto únicamente por universidades privadas con ánimo de lucro similar al segmento 0 contiene las universidas con menor oferta de las carreras y menor deuda media de sus estudiantes, pero tiene una mayor oferta que el cluster 0 de computación en la modalidad virtual. Tiene un porcentaje de estudiantes con préstamo federal muy similar a los segmneto 3, 4 y 5 y es el segundo en cuanto a estudiantes con beca Pell Grants. Respecto a los graduados, es el de menor porcentaje de estos en las carreras salvo en computación y en ingeniería y tecnología que es el segundo mayor.')
+
+    with col8:
+        st.markdown('##### Segmento 5')
+        st.markdown('Compuesto únicamente por universidades públicas y privadas sin ánimo de lucro (siendo mayor la cantidad de éstas ultimas en el segmento) las cuales ofertan las carreras únicamente de forma presencial. Como en el segmento 3 tiene un porcentaje similar de estudiantes con préstamos federales a los segmento 2 y 5, pero es el segmento con universidades cuyos estudiantes tienen la mayor deuda media, ocasionado probablemente también porque es el de menor porcentaje de estudiantes con beca Pell Grants. Respecto al porcentaje de universidades graduados en sus universidades, ocurre aproximadamente lo mismo que en el segmento 3.')
+    with col9:
+        st.markdown('##### Segmento 6')
+        st.markdown('Compuesto únicamente por universidades privadas sin ánimo de lucro, las universidades dentro de este grupo son similares en cuanto a su no oferta de las carreras como los segmento 0 y 2, sin embargo tienen un poco más de oferta en los campos de computación y matemáticas en las modalidades presencial y virtual que estos 2 segmento anteriormente mencionados. Su deuda media y porcentaje de estudiantes con préstamo federal son similares a los de segmento 1 y 4 respectivamente y es el tercero en cuanto a mayor media de porcentaje de estudiantes con becas Pell Grants. Destaca en que es el segmento con mayor porcentaje de graduados en ingeniería y en general es el tercero con mayor porcentaje de estudiantes graduados para las demás carreras.')
+
+   
     #st.set_option('deprecation.showPyplotGlobalUse', False)
     
-    
-    
+    st.markdown('### Mapa de las universidades')
+    st.markdown('En el siguiente mapa se puede escoger las universidadades por segmento (cada universidad está representada con un circulo). Si pone el cursor encima del circulo, saldrá el nombre de la unviersidad.Para todos los segmentos o agrupaciones o segmentos, la mayoría de las universidades quedan al este de Estados Unidos.')
+
+    st.markdown('##### seleccione el segmento')
     option = st.selectbox(
-        '¿Qué cluster desea comparar?',
+        '¿Qué segmento desea comparar?',
         (0,1,2,3,4,5))
-    st.write(map(option))
+    x = option 
+    print("opcion",x)
+    st.write(map(x))
 
-    
-
-    #------------------------------------------------------------
-
-
-    #option_cluster_barplot = st.selectbox(
-        #'¿Qué variable continua desea comparar?',
-        #('0','1','2','3'))
-
-    #options_barplot = st.multiselect(
-        #'¿Que columnas categóricas quieres comparar?',
-        #['CURROPER','CONTROL','CIP11BACHL','CIP15BACHL','CIP14BACHL','CIP27BACHL'],
-        #['CURROPER','CONTROL','CIP11BACHL','CIP15BACHL','CIP14BACHL','CIP27BACHL'])
-
-
-
-    #st.pyplot(barplot_cat(df, cluster, carreras_show))
-
-    #barplot_cat(df,'0',['CONTROL'])
-    #------------------------------------------------------
-    
-    #clusters = [value for value in options.values()]
+    st.markdown('### Estadísticas de las universidades por segmentos y variables ')
     continuas_show(df)
+    
