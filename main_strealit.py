@@ -93,22 +93,22 @@ def map(numeroCluster):
         
     elif(numeroCluster == 1):
         st.markdown('### Características del Segmento 2')
-        cheap = Image.open('cheap.png')
-        loans = Image.open('noloans.webp')
+        expensive = Image.open('expensive.png')
+        prestamos = Image.open('prestamos.webp')
         bachelordegree = Image.open('bachelordegree.png')
         arrowDown = Image.open('arrowD.png')
         with col1:
-            st.image(cheap,width=100)
-            st.markdown('Universidades Públicas, más baratas')
+            st.image(expensive,width=100)
+            st.markdown('Universidades Privadas, más baratas')
         with col2:
-            st.image(loans,width=100)
-            st.markdown(' Menos prestamos federales')
+            st.image(prestamos,width=100)
+            st.markdown(' Más prestamos federales')
         with col3:
             st.image(bachelordegree,width=100)
-            st.markdown('Menos carreras de interés')
+            st.markdown('Más oferta de carreras en modalidad prescencial')
         with col4:
             st.image(arrowDown,width=100)
-            st.markdown('Poca gente graduada de estas universidades')
+            st.markdown('Mayor porcentaje de estudiantes graduados de estas universidades')
         color = [0, 255, 0]
     elif(numeroCluster == 2):
         color = [0, 0, 255]
