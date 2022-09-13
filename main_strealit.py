@@ -39,7 +39,7 @@ st.markdown('Para la selección de la universidad, se debe basar en los siguient
 st.markdown('- **Tipo de universidad**: Ya sea pública, privada sin ánimo de lucro o privada con ánimo de lucro.')
 st.markdown('- **Tipo de carrera:** Computación, ingeniería, ingeniería y tecnología o matemáticas.')
 st.markdown('- **Modalidad de estudio:** Presencial o virtual.')
-st.markdown('- **Porcentaje de estudiantes que reciben becas y prestamos:** Pell Grant o Loan.')
+st.markdown('- **Porcentaje de estudiantes que reciben becas y prestamos:** Beca Pell Grants o préstamo federal.')
 st.markdown('Con base a los criterios se dividieron las universidades en 6 segmentos. En esta aplicación web se podrá ver las características de cada uno de los segmentos. Además se podran comparar características de los segmentos.')
 
 st.markdown('### Información adicional')
@@ -76,39 +76,39 @@ def map(numeroCluster):
         loans = Image.open('noloans.webp')
         bachelordegree = Image.open('bachelordegree.png')
         arrowD = Image.open('arrowD.png')
-        st.markdown('### Características del Segmento 1')
+        st.markdown('### Características del Segmento 0')
         with col1:
             st.image(cheap,width=100)
-            st.markdown('- Universidades públicas, más baratas')
+            st.markdown('- Universidades públicas')
         with col2:
             st.image(loans,width=100)
-            st.markdown('- Menos prestamos federales')
+            st.markdown('- Menos cantidad de estudiantes con préstamos federales')
         with col3:
             st.image(bachelordegree,width=100)
-            st.markdown('- Menos carreras de interés')
+            st.markdown('- Menos áreas de interés ofertadas')
         with col4:
             st.image(arrowD,width=100)
-            st.markdown('- Menor porcentaje de gente graduada en estas universidades')
+            st.markdown('- Menor porcentaje de estudiantes graduados en las áreas de interés estas universidades')
       
         
     elif(numeroCluster == 1):
-        st.markdown('### Características del Segmento 2')
+        st.markdown('### Características del Segmento 1')
         expensive = Image.open('expensive.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
         arrowUp = Image.open('arrowU.png')
         with col1:
             st.image(expensive,width=100)
-            st.markdown('- La mayoría de las universidades son privadas con ánimos de lucros, más caras')
+            st.markdown('- Mayoría de universidades con ánimos de lucro')
         with col2:
             st.image(prestamos,width=100)
-            st.markdown(' - Más prestamos federales')
+            st.markdown(' - Más cantidad de estudiantes con préstamos federales y becas Pell Grants')
         with col3:
             st.image(bachelordegree,width=100)
-            st.markdown('- Más oferta de carreras en modalidad prescencial')
+            st.markdown('- Más oferta de carreras en modalidad presencial')
         with col4:
             st.image(arrowUp,width=100)
-            st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades')
+            st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades en las áreas de interés')
         color = [0, 255, 0]
     elif(numeroCluster == 2):
         st.markdown('### Características del Segmento 2')
@@ -118,73 +118,73 @@ def map(numeroCluster):
         arrowUp = Image.open('arrowU.png')
         with col1:
             st.image(expensive,width=100)
-            st.markdown('- La Mayoría de las universidades son privadas con ánimos de lucros (más caras)')
+            st.markdown('- Solo universidades privadas con ánimo de lucro')
         with col2:
             st.image(prestamos,width=100)
-            st.markdown(' - Más prestamos federales')
+            st.markdown(' - Segundo con mayor cantidad de estudiantes con beca Pell Grants')
         with col3:
             st.image(bachelordegree,width=100)
-            st.markdown('- Más oferta de carreras en modalidad prescencial')
+            st.markdown('- Pocas áreas de interés ofertadas')
         with col4:
             st.image(arrowUp,width=100)
-            st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades')
+            st.markdown('- Segundo mayor en porcentaje de estudiantes graduados de estas universidades en computación e ingeniería y tecnología')
         color = [0, 0, 255]
     elif(numeroCluster == 3):
-        st.markdown('### Características del Segmento 2')
+        st.markdown('### Características del Segmento 3')
         expensive = Image.open('expensive.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
         arrowUp = Image.open('arrowU.png')
         with col1:
             st.image(expensive,width=100)
-            st.markdown('- Solo universidades privadas con ánimos de lucros (más caras)')
+            st.markdown('- Universidades públicas y privadas sin ánimos de lucro')
         with col2:
             st.image(prestamos,width=100)
-            st.markdown(' - Más prestamos federales')
+            st.markdown(' - Segunda mayor deuda de estudiantes')
         with col3:
             st.image(bachelordegree,width=100)
-            st.markdown('- Más oferta de carreras en modalidad prescencial')
+            st.markdown('- Carreras únicamente de forma virtual')
         with col4:
             st.image(arrowUp,width=100)
-            st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades')
+            st.markdown('- Bajo porcentaje de estudiantes graduados de estas universidades')
         color = [255, 255, 0]
     elif(numeroCluster == 4):
-        st.markdown('### Características del Segmento 2')
+        st.markdown('### Características del Segmento 4')
         expensive = Image.open('university.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
         arrowUp = Image.open('arrowU.png')
         with col1:
             st.image(expensive,width=100)
-            st.markdown('- Solo Universidades públicas y privadas sin ánimo de lucro')
+            st.markdown('- Universidades públicas y privadas sin ánimos de lucro')
         with col2:
             st.image(prestamos,width=100)
-            st.markdown(' - Más prestamos federales')
+            st.markdown(' - Mayor deuda media y menor cantidad de estudiantes con beca Pell Grants')
         with col3:
             st.image(bachelordegree,width=100)
-            st.markdown('- Más oferta de carreras en modalidad prescencial')
+            st.markdown('- Carreras únicamente ofertadas en modalidad presencial')
         with col4:
             st.image(arrowUp,width=100)
-            st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades.')
+            st.markdown('- Pocos estudiantes graduados en las áreas de interés, como en el segmento 3.')
         color = [255, 0, 255]
     elif(numeroCluster == 5):
-        st.markdown('### Características del Segmento 2')
+        st.markdown('### Características del Segmento 5')
         expensive = Image.open('university.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
         arrowUp = Image.open('arrowU.png')
         with col1:
             st.image(expensive,width=100)
-            st.markdown('- Solo universidades privadas sin ánimo de lucro.')
+            st.markdown('- Solo universidades privadas con ánimo de lucro.')
         with col2:
             st.image(prestamos,width=100)
-            st.markdown(' - Más prestamos federales.')
+            st.markdown(' - Tercer segmento con mayor cantidad de estudiantes con beca Pell Grants')
         with col3:
             st.image(bachelordegree,width=100)
-            st.markdown('- Más oferta de carreras en modalidad prescencial.')
+            st.markdown('- Pocas áreas de interés ofertadas')
         with col4:
             st.image(arrowUp,width=100)
-            st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades.')
+            st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades en ingeniería')
         color = [0, 255, 255]                  
     
     layer = pdk.Layer(
@@ -229,9 +229,10 @@ with st.sidebar:
     st.markdown("- Daniel Daza Macías.")
     st.markdown("   dadazam@unal.edu.co")
 
+"""
 with show_clust:
     tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
-        ["Segmento 1", "Segmento 2", "Segmento 3", "Segmento 4", "Segmento 5", "Segmento 6"])
+        ["Segmento 0", "Segmento 1", "Segmento 2", "Segmento 3", "Segmento 4", "Segmento 5"])
     with tab1:
         tab_show(0, df)
     with tab2:
@@ -243,7 +244,7 @@ with show_clust:
     with tab5:
         tab_show(4, df)
     with tab6:
-        tab_show(5, df)
+        tab_show(5, df) """
 
 
 with compare:
@@ -256,10 +257,10 @@ with compare:
     with col4:
         st.markdown('#### Información sobre los segmentos')
         st.markdown('')
-        st.markdown('##### Segmento 1')
+        st.markdown('##### Segmento 0')
         st.markdown('Compuesto por universidades públicas, en donde está el menor porcentaje de estudiantes con un préstamo federal y por tanto la menor deuda media. Sin embargo es el segmento que contiene las universidades con menor oferta de las carreras de interés, por ende es donde menor cantidad de estudiantes graduados en dichos pregrados hay.')
-        st.markdown('##### Segmento 2')
-        st.markdown('Compuesto por universidades en su mayoría privadas con ánimo de lucros y poseen un mayor porcentaje de estudiantes tanto con préstamo federal como con beca Pell Grants, debido a esto sus estudiantes tienen una deuda media mayor que los segmento 0 y 2 y es el de mayor deuda media de sus estudiantes graduados (junto con los segmento 3 y 4). En este segmento es donde se encuentran las universidades con más oferta presencial de los campos de computación e ingeniería y tecnología, además es donde mayor porcentaje de estudiantes graduados en computación, ingeniería y tecnología y matemáticas hay.')
+        st.markdown('##### Segmento 1')
+        st.markdown(' Compuesto por universidades en su mayoría privadas con ánimo de lucros y poseen un mayor porcentaje de estudiantes tanto con préstamo federal como con beca Pell Grants, debido a esto sus estudiantes tienen una deuda media mayor que los segmentos 0 y 2 y es el de mayor deuda media de sus estudiantes graduados (junto con los segmentos 3 y 4). En este segmento es donde se encuentran las universidades con mas oferta presencial de los campos de computación e ingeniería y tecnología, además es donde mayor porcentaje de estudiantes graduados en computación, ingeniería y tecnología y matemáticas hay.')
     with col5:
         data = coordenadas['Cluster'].value_counts()
         print(data)
@@ -270,19 +271,19 @@ with compare:
     col6,col7,col8,col9 = st.columns(4)
     
     with col6:
-        st.markdown('##### Segmento 3')
-        st.markdown('Compuesto por universidades en su mayoría privadas con ánimo de lucros y poseen un mayor porcentaje de estudiantes tanto con préstamo federal como con beca Pell Grants, debido a esto sus estudiantes tienen una deuda media mayor que los segmento 0 y 2 y es el de mayor deuda media de sus estudiantes graduados (junto con los segmento 3 y 4). En este segmento es donde se encuentran las universidades con más oferta presencial de los campos de computación e ingeniería y tecnología, además es donde mayor porcentaje de estudiantes graduados en computación, ingeniería y tecnología y matemáticas hay.')
+        st.markdown('##### Segmento 2')
+        st.markdown('Compuesto únicamente por universidades privadas con ánimo de lucro similar al segmento 0 contiene las universidas con menor oferta de las carreras y menor deuda media de sus estudiantes, pero tiene una mayor oferta que el segmento 0 de computación en la modalidad virtual. Tiene un porcentaje de estudiantes con préstamo federal muy similar a los segmentos 3, 4 y 5 y es el segundo en cuanto a estudiantes con beca Pell Grants. Respecto a los graduados, es el de menor porcentaje de estos en las carreras salvo en computación y en ingeniería y tecnología que es el segundo mayor.')
 
     with col7:
-        st.markdown('##### Segmento 4')
-        st.markdown('Compuesto únicamente por universidades privadas con ánimo de lucro similar al segmento 0 contiene las universidas con menor oferta de las carreras y menor deuda media de sus estudiantes, pero tiene una mayor oferta que el segmento 0 de computación en la modalidad virtual. Tiene un porcentaje de estudiantes con préstamo federal muy similar a los segmneto 3, 4 y 5 y es el segundo en cuanto a estudiantes con beca Pell Grants. Respecto a los graduados, es el de menor porcentaje de estos en las carreras salvo en computación y en ingeniería y tecnología que es el segundo mayor.')
+        st.markdown('##### Segmento 3')
+        st.markdown('Compuesto en su mayoría por universidades públicas y privadas sin ánimo de lucro las cuales no ofertan las carreras de forma presencial, únicamente virtual. A pesar de que tiene un porcentaje similar a los segmentos 2, 4 y 5 de estudiantes con préstamos federales, es el segmento con universidades cuyos estudiantes tienen la segunda mayor deuda media esto quizá provocado porque también tiene el segundo menor porcentaje de estudiantes con beca Pell Grants. Sus universidades son las de menor porcentaje de graduados (junto con el segmento 4) salvo en mátemáticas que tiene el segundo mayor porcentaje de graduados en este campo.')
 
     with col8:
-        st.markdown('##### Segmento 5')
-        st.markdown('Compuesto únicamente por universidades públicas y privadas sin ánimo de lucro (siendo mayor la cantidad de éstas ultimas en el segmento) las cuales ofertan las carreras únicamente de forma presencial. Como en el segmento 3 tiene un porcentaje similar de estudiantes con préstamos federales a los segmento 2 y 5, pero es el segmento con universidades cuyos estudiantes tienen la mayor deuda media, ocasionado probablemente también porque es el de menor porcentaje de estudiantes con beca Pell Grants. Respecto al porcentaje de universidades graduados en sus universidades, ocurre aproximadamente lo mismo que en el segmento 3.')
+        st.markdown('##### Segmento 4')
+        st.markdown('Compuesto únicamente por universidades públicas y privadas sin ánimo de lucro (siendo mayor la cantidad de éstas ultimas en el segmento) las cuales ofertan las carreras únicamente de forma presencial. Como en el segmento 3 tiene un porcentaje similar de estudiantes con préstamos federales a los segmentos 2 y 5, pero es el segmento con universidades cuyos estudiantes tienen la mayor deuda media, ocasionado probablemente también porque es el de menor porcentaje de estudiantes con beca Pell Grants. Respecto al porcentaje de universidades graduados en sus universidades, ocurre aproximadamente lo mismo que en el segmento 3.')
     with col9:
-        st.markdown('##### Segmento 6')
-        st.markdown('Compuesto únicamente por universidades privadas sin ánimo de lucro, las universidades dentro de este grupo son similares en cuanto a su no oferta de las carreras como los segmento 0 y 2, sin embargo tienen un poco más de oferta en los campos de computación y matemáticas en las modalidades presencial y virtual que estos 2 segmento anteriormente mencionados. Su deuda media y porcentaje de estudiantes con préstamo federal son similares a los de segmento 1 y 4 respectivamente y es el tercero en cuanto a mayor media de porcentaje de estudiantes con becas Pell Grants. Destaca en que es el segmento con mayor porcentaje de graduados en ingeniería y en general es el tercero con mayor porcentaje de estudiantes graduados para las demás carreras.')
+        st.markdown('##### Segmento 5')
+        st.markdown('Compuesto únicamente por universidades privadas sin ánimo de lucro, las universidades dentro de este grupo son similares en cuanto a su no oferta de las carreras como los segmentos 0 y 2, sin embargo tienen un poco más de oferta en los campos de computación y matemáticas en las modalidades presencial y virtual que estos 2 segmentos anteriormente mencionados. Su deuda media y porcentaje de estudiantes con préstamo federal son similares a los de segmento 1 y 4 respectivamente y es el tercero en cuanto a mayor media de porcentaje de estudiantes con becas Pell Grants. Destaca en que es el segmento con mayor porcentaje de graduados en ingeniería y en general es el tercero con mayor porcentaje de estudiantes graduados para las demás carreras.')
 
    
     #st.set_option('deprecation.showPyplotGlobalUse', False)
