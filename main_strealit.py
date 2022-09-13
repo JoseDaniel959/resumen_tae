@@ -9,7 +9,7 @@ import pydeck as pdk
 # from sklearn.cluster import AgglomerativeClustering
 # import scipy.cluster.hierarchy as sch
 # from sklearn.cluster import KMeans
-
+#pip install pydeck==0.7.1
 image = Image.open('eeuu.png')
 image1 = Image.open('university.png')
 image2 = Image.open('bachelor.png')
@@ -33,17 +33,17 @@ with col3:
 
 
 st.markdown('## Propósito')
-st.markdown('El departamento de Estados Unidos comparte información al público sobre las universidades del país, para que puedan tomar una decisión al momento de elegir una. El propósito de esta aplicación web es ayudar a los que deseen estudiar, escoger una universidad. ')
+st.markdown('El departamento de los Estados Unidos comparte información al público sobre las universidades del país, para que se puedan tomar decisiones respecto a la elección de universidades. El propósio de esta aplicación web es ayudar a futuros estudiantes de universidades en las áreas de Ciencias de la computación, Ingenierías, Ingenierías y tecnología y Matemáticas a escoger una universidad partiendo de segmentos de estas. ')
 
 st.markdown('Para la selección de la universidad, se debe basar en los siguiente criterios:')
-st.markdown('- **Tipo de universidad**: ya si sea pública privada o privada con ánimo de lucro.')
-st.markdown('- **Tipo de carrera:** Los que deseen estudiar Computación,ingeniería,ingeniería y tecnología o matemáticas.')
-st.markdown('- **Modalidad de estudio:** presencial o virtual.')
-st.markdown('- **Porcentaje de estudiantes que reciben prestamos:** Pell Grant o Loan.')
-st.markdown('En base a los criterios se dividieron a las universidades en 6 segmentos.En esta aplicación web se podrá ver las características de cada uno segmentos. Además se puede comparar todas las características de los segmentos juntos')
+st.markdown('- **Tipo de universidad**: Ya sea pública, privada sin ánimo de lucro o privada con ánimo de lucro.')
+st.markdown('- **Tipo de carrera:** Computación, ingeniería, ingeniería y tecnología o matemáticas.')
+st.markdown('- **Modalidad de estudio:** Presencial o virtual.')
+st.markdown('- **Porcentaje de estudiantes que reciben becas y prestamos:** Pell Grant o Loan.')
+st.markdown('Con base a los criterios se dividieron las universidades en 6 segmentos. En esta aplicación web se podrá ver las características de cada uno de los segmentos. Además se podran comparar características de los segmentos.')
 
 st.markdown('### Información adicional')
-st.markdown('Se proporciona la siguiente información,para que el aspirante se pueda informar más y tomar una mejor decisión')
+st.markdown('Se proporciona la siguiente información para que el aspirante pueda ahondar más y tomar una mejor decisión.')
 
 
 st.markdown('## Segmentos')
@@ -53,8 +53,8 @@ st.markdown('## Segmentos')
 
 df = pd.read_csv('base1 (2).csv') 
 df.rename({'Clusters': 'cluster'}, axis=1, inplace=True)
-show_clust, compare = st.tabs(["Características por cluster",
-                               "Comparar clusters"])
+show_clust, compare = st.tabs(["Características por segmentos",
+                               "Comparar segmentos"])
 
 coordenadas = pd.read_csv('sinNulosyConCoordenadas.csv')
 coordenadas['Cluster'] = df['cluster'] 
@@ -75,49 +75,116 @@ def map(numeroCluster):
         cheap = Image.open('cheap.png')
         loans = Image.open('noloans.webp')
         bachelordegree = Image.open('bachelordegree.png')
-        arrowDown = Image.open('arrowD.png')
+        arrowD = Image.open('arrowD.png')
         st.markdown('### Características del Segmento 1')
         with col1:
             st.image(cheap,width=100)
-            st.markdown('Universidades Públicas, más baratas')
+            st.markdown('- Universidades públicas, más baratas')
         with col2:
             st.image(loans,width=100)
-            st.markdown(' Menos prestamos federales')
+            st.markdown('- Menos prestamos federales')
         with col3:
             st.image(bachelordegree,width=100)
-            st.markdown('Menos carreras de interés')
+            st.markdown('- Menos carreras de interés')
         with col4:
-            st.image(arrowDown,width=100)
-            st.markdown('Poca gente graduada de estas universidades')
+            st.image(arrowD,width=100)
+            st.markdown('- Menor porcentaje de gente graduada en estas universidades')
       
         
     elif(numeroCluster == 1):
         st.markdown('### Características del Segmento 2')
         expensive = Image.open('expensive.png')
-        prestamos = Image.open('prestamos.webp')
+        prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
-        arrowDown = Image.open('arrowD.png')
+        arrowUp = Image.open('arrowU.png')
         with col1:
             st.image(expensive,width=100)
-            st.markdown('Universidades Privadas, más baratas')
+            st.markdown('- La mayoría de las universidades son privadas con ánimos de lucros, más caras')
         with col2:
             st.image(prestamos,width=100)
-            st.markdown(' Más prestamos federales')
+            st.markdown(' - Más prestamos federales')
         with col3:
             st.image(bachelordegree,width=100)
-            st.markdown('Más oferta de carreras en modalidad prescencial')
+            st.markdown('- Más oferta de carreras en modalidad prescencial')
         with col4:
-            st.image(arrowDown,width=100)
-            st.markdown('Mayor porcentaje de estudiantes graduados de estas universidades')
+            st.image(arrowUp,width=100)
+            st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades')
         color = [0, 255, 0]
     elif(numeroCluster == 2):
+        st.markdown('### Características del Segmento 2')
+        expensive = Image.open('expensive.png')
+        prestamos = Image.open('prestamos.png')
+        bachelordegree = Image.open('bachelordegree.png')
+        arrowUp = Image.open('arrowU.png')
+        with col1:
+            st.image(expensive,width=100)
+            st.markdown('- La Mayoría de las universidades son privadas con ánimos de lucros (más caras)')
+        with col2:
+            st.image(prestamos,width=100)
+            st.markdown(' - Más prestamos federales')
+        with col3:
+            st.image(bachelordegree,width=100)
+            st.markdown('- Más oferta de carreras en modalidad prescencial')
+        with col4:
+            st.image(arrowUp,width=100)
+            st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades')
         color = [0, 0, 255]
     elif(numeroCluster == 3):
+        st.markdown('### Características del Segmento 2')
+        expensive = Image.open('expensive.png')
+        prestamos = Image.open('prestamos.png')
+        bachelordegree = Image.open('bachelordegree.png')
+        arrowUp = Image.open('arrowU.png')
+        with col1:
+            st.image(expensive,width=100)
+            st.markdown('- Solo universidades privadas con ánimos de lucros (más caras)')
+        with col2:
+            st.image(prestamos,width=100)
+            st.markdown(' - Más prestamos federales')
+        with col3:
+            st.image(bachelordegree,width=100)
+            st.markdown('- Más oferta de carreras en modalidad prescencial')
+        with col4:
+            st.image(arrowUp,width=100)
+            st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades')
         color = [255, 255, 0]
     elif(numeroCluster == 4):
+        st.markdown('### Características del Segmento 2')
+        expensive = Image.open('university.png')
+        prestamos = Image.open('prestamos.png')
+        bachelordegree = Image.open('bachelordegree.png')
+        arrowUp = Image.open('arrowU.png')
+        with col1:
+            st.image(expensive,width=100)
+            st.markdown('- Solo Universidades públicas y privadas sin ánimo de lucro')
+        with col2:
+            st.image(prestamos,width=100)
+            st.markdown(' - Más prestamos federales')
+        with col3:
+            st.image(bachelordegree,width=100)
+            st.markdown('- Más oferta de carreras en modalidad prescencial')
+        with col4:
+            st.image(arrowUp,width=100)
+            st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades.')
         color = [255, 0, 255]
     elif(numeroCluster == 5):
-        print("Entro")
+        st.markdown('### Características del Segmento 2')
+        expensive = Image.open('university.png')
+        prestamos = Image.open('prestamos.png')
+        bachelordegree = Image.open('bachelordegree.png')
+        arrowUp = Image.open('arrowU.png')
+        with col1:
+            st.image(expensive,width=100)
+            st.markdown('- Solo universidades privadas sin ánimo de lucro.')
+        with col2:
+            st.image(prestamos,width=100)
+            st.markdown(' - Más prestamos federales.')
+        with col3:
+            st.image(bachelordegree,width=100)
+            st.markdown('- Más oferta de carreras en modalidad prescencial.')
+        with col4:
+            st.image(arrowUp,width=100)
+            st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades.')
         color = [0, 255, 255]                  
     
     layer = pdk.Layer(
@@ -152,10 +219,15 @@ with st.sidebar:
     st.image(image3,width=80)
     st.markdown("#### Desarrollado por:")
     st.markdown("- Jose Daniel Bustamante Arango.")
+    st.markdown("   jobustamantea@unal.edu.co")
     st.markdown("- Daniel Santiago Cadavid Montoya.")
-    st.markdown("- Ronald Grabiel Palencia.")
-    st.markdown("- Marlo Calle Areiza.")
+    st.markdown("   dcavadi@unal.edu.co")
+    st.markdown("- Ronald Gabriel Palencia.")
+    st.markdown("   ropalencia@unal.edu.co")
+    st.markdown("- Marlon Calle Areiza.")
+    st.markdown("   mcalle@unal.edu.co")
     st.markdown("- Daniel Daza Macías.")
+    st.markdown("   dadazam@unal.edu.co")
 
 with show_clust:
     tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
@@ -177,7 +249,7 @@ with show_clust:
 with compare:
     
 
-    st.markdown('### Proporción de universidades por segmentos ')
+    st.markdown('### Proporción de universidades por segmentos')
 
     col4,col5 = st.columns(2)
     
@@ -203,7 +275,7 @@ with compare:
 
     with col7:
         st.markdown('##### Segmento 4')
-        st.markdown('Compuesto únicamente por universidades privadas con ánimo de lucro similar al segmento 0 contiene las universidas con menor oferta de las carreras y menor deuda media de sus estudiantes, pero tiene una mayor oferta que el cluster 0 de computación en la modalidad virtual. Tiene un porcentaje de estudiantes con préstamo federal muy similar a los segmneto 3, 4 y 5 y es el segundo en cuanto a estudiantes con beca Pell Grants. Respecto a los graduados, es el de menor porcentaje de estos en las carreras salvo en computación y en ingeniería y tecnología que es el segundo mayor.')
+        st.markdown('Compuesto únicamente por universidades privadas con ánimo de lucro similar al segmento 0 contiene las universidas con menor oferta de las carreras y menor deuda media de sus estudiantes, pero tiene una mayor oferta que el segmento 0 de computación en la modalidad virtual. Tiene un porcentaje de estudiantes con préstamo federal muy similar a los segmneto 3, 4 y 5 y es el segundo en cuanto a estudiantes con beca Pell Grants. Respecto a los graduados, es el de menor porcentaje de estos en las carreras salvo en computación y en ingeniería y tecnología que es el segundo mayor.')
 
     with col8:
         st.markdown('##### Segmento 5')
@@ -218,7 +290,7 @@ with compare:
     st.markdown('### Mapa de las universidades')
     st.markdown('En el siguiente mapa se puede escoger las universidadades por segmento (cada universidad está representada con un circulo). Si pone el cursor encima del circulo, saldrá el nombre de la unviersidad.Para todos los segmentos o agrupaciones o segmentos, la mayoría de las universidades quedan al este de Estados Unidos.')
 
-    st.markdown('##### seleccione el segmento')
+    st.markdown('##### Seleccione el segmento')
     option = st.selectbox(
         '¿Qué segmento desea comparar?',
         (0,1,2,3,4,5))
