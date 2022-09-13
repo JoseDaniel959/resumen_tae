@@ -46,21 +46,22 @@ def continuas_show(df):
 
     #print(option)
 
-
+    
 
      st.write(str(options))
      if(len(options) != 0):
-            col1, col2, col3, = st.columns(3)
-            
+            col1, col2 = st.columns(2)
+
             with col1:
                 st.markdown('##### Boxplot de una variable continua vs clusters seleccionados')
                 st.pyplot(boxplot_cluster_vs_continuas(df,options,option))
             with col2:
                 st.markdown('##### Diagrama de densidad de una variable continua vs clusters seleccionados')
                 st.pyplot(dens_plot_cluster_vs_continuas(df,options,option))
-            with col3:
-                st.markdown('##### Diagrama de violin de una variable continua vs clusters seleccionados')
-                st.pyplot(violin_plot_cluster_vs_continuas(df,options,option))
+
+            st.markdown('En el boxplot, la línea dentro de la caja representa la mediana de los datos y el ancho de la caja está dado por la dispersión de los datos sobre esa mediana.')
+            st.markdown('En las gráficas de densidad, en donde aparezca el pico mas alto se dice que es la moda y en donde es mas ancha la curva es donde mayor cantidad de datos.')
+
         
      else:
             st.markdown("##### Seleccione algún cluster")

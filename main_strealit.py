@@ -44,10 +44,10 @@ st.markdown('Con base a los criterios se dividieron las universidades en 6 segme
 
 st.markdown('### Información adicional')
 st.markdown('Se proporciona la siguiente información para que el aspirante pueda ahondar más y tomar una mejor decisión.')
-st.markdown('Beca Pell: https://www.youtube.com/watch?v=1pjYN4eSP1I&ab_channel=TheCollegeInvestor')
-st.markdown('Prestamos federales: (Loans) https://www.youtube.com/watch?v=1pjYN4eSP1I&ab_channel=TheCollegeInvestor')
-st.markdown('video sobre ingeniería: https://www.youtube.com/watch?v=I11y_FLlEp8&ab_channel=Explorist')
-st.markdown('video sobre ciencias de la computación: https://www.youtube.com/watch?v=I11y_FLlEp8&ab_channel=Explorist')
+st.markdown('Beca Pell Grants: https://www.youtube.com/watch?v=1pjYN4eSP1I&ab_channel=TheCollegeInvestor')
+st.markdown('Prestamos federales: (FLoans) https://www.youtube.com/watch?v=1pjYN4eSP1I&ab_channel=TheCollegeInvestor')
+st.markdown('Video sobre ingeniería: https://www.youtube.com/watch?v=I11y_FLlEp8&ab_channel=Explorist')
+st.markdown('Video sobre ciencias de la computación: https://www.youtube.com/watch?v=I11y_FLlEp8&ab_channel=Explorist')
 
 st.markdown('## Segmentos')
 
@@ -136,7 +136,7 @@ def map(numeroCluster):
         expensive = Image.open('expensive.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
-        arrowUp = Image.open('arrowU.png')
+        arrowD = Image.open('arrowD.png')
         with col1:
             st.image(expensive,width=100)
             st.markdown('- Universidades públicas y privadas sin ánimos de lucro')
@@ -147,7 +147,7 @@ def map(numeroCluster):
             st.image(bachelordegree,width=100)
             st.markdown('- Carreras únicamente de forma virtual')
         with col4:
-            st.image(arrowUp,width=100)
+            st.image(arrowD,width=100)
             st.markdown('- Bajo porcentaje de estudiantes graduados de estas universidades')
         color = [255, 255, 0]
     elif(numeroCluster == 4):
@@ -155,7 +155,7 @@ def map(numeroCluster):
         expensive = Image.open('universidad.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
-        arrowUp = Image.open('arrowU.png')
+        arrowD = Image.open('arrowD.png')
         with col1:
             st.image(expensive,width=100)
             st.markdown('- Universidades públicas y privadas sin ánimos de lucro')
@@ -166,7 +166,7 @@ def map(numeroCluster):
             st.image(bachelordegree,width=100)
             st.markdown('- Carreras únicamente ofertadas en modalidad presencial')
         with col4:
-            st.image(arrowUp,width=100)
+            st.image(arrowD,width=100)
             st.markdown('- Pocos estudiantes graduados en las áreas de interés, como en el segmento 3.')
         color = [255, 0, 255]
     elif(numeroCluster == 5):
@@ -223,7 +223,7 @@ with st.sidebar:
     st.markdown("- Jose Daniel Bustamante Arango.")
     st.markdown("   jobustamantea@unal.edu.co")
     st.markdown("- Daniel Santiago Cadavid Montoya.")
-    st.markdown("   dcavadi@unal.edu.co")
+    st.markdown("   dcadavid@unal.edu.co")
     st.markdown("- Ronald Gabriel Palencia.")
     st.markdown("   ropalencia@unal.edu.co")
     st.markdown("- Marlon Calle Areiza.")
@@ -283,5 +283,17 @@ st.write(map(x))
 
 st.markdown('### Estadísticas de las universidades por segmentos y variables ')
 st.markdown('En la siguiente sección puede comparar los cluster con cada una de las siguientes variables')
+st.markdown('**Significado de las variables:**')
+st.markdown('**DEBT_MDN:** Se trata de la deuda mediana de préstamos acumulada en la institución por todos los estudiantes prestatarios de préstamos federales que se separan (es decir, se gradúan o se retiran) en un año fiscal determinado.')
+st.markdown('**PCTFLOAN:** proporción de estudiantes universitarios que recibieron préstamos federales en un año determinado.')
+st.markdown('**GRAD_DEBT_MDN:** deuda para los estudiantes que completarón sus estudios universitarios.')
+st.markdown('**PCTPELL:** esta variable es el porcentaje de estudiantes los cuales recibieron Pell Grants, el cual es una beca federal que reciben los estudiantes de ingresos bajos')
+st.markdown('**PCIP11:**: Porcentaje de titulos otorgados en el campo de la Computación')
+st.markdown('**PCIP14:** Porcentaje de titulos otorgados en el campo de la  ingeniería')
+st.markdown('**PCIP15:** Porcentaje de titulos otorgados en el campo de la  ingeniería y tecnología')
+st.markdown('**PCIP27:** Porcentaje de titulos en otorgados en el campo de la  matemáticas')
+
 continuas_show(df)
+
+
     
