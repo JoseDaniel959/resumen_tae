@@ -62,9 +62,6 @@ coordenadas = pd.read_csv('sinNulosyConCoordenadas.csv')
 coordenadas['Cluster'] = df['cluster'] 
 coordenadas = coordenadas[["LONGITUDE", "LATITUDE","INSTNM",'Cluster']].dropna(axis = 0,subset = ["LONGITUDE", "LATITUDE"])
 
-print("sin nulos")
-print(coordenadas.info())
-print(coordenadas['Cluster'].unique())
 
 
 
@@ -245,7 +242,6 @@ with col4:
     st.markdown(' Compuesto por universidades en su mayoría privadas con ánimo de lucros y poseen un mayor porcentaje de estudiantes tanto con préstamo federal como con beca Pell Grants, debido a esto sus estudiantes tienen una deuda media mayor que los segmentos 0 y 2 y es el de mayor deuda media de sus estudiantes graduados (junto con los segmentos 3 y 4). En este segmento es donde se encuentran las universidades con mas oferta presencial de los campos de computación e ingeniería y tecnología, además es donde mayor porcentaje de estudiantes graduados en computación, ingeniería y tecnología y matemáticas hay.')
 with col5:
     data = coordenadas['Cluster'].value_counts()
-    print(data)
     st.pyplot(grafico_torta(data))
         
         
@@ -278,7 +274,7 @@ option = st.selectbox(
     '¿Qué segmento desea comparar?',
     (0,1,2,3,4,5))
 x = option 
-print("opcion",x)
+
 st.write(map(x))
 
 st.markdown('### Estadísticas de las universidades por segmentos y variables ')

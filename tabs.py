@@ -44,7 +44,7 @@ def continuas_show(df):
         '¿Qué variable continua desea comparar?',
         ('DEBT_MDN','PCTFLOAN','GRAD_DEBT_MDN','PCIP11','PCIP15','PCIP14','PCIP27','PCTPELL'),key=unique)
 
-    #print(option)
+ 
 
     
 
