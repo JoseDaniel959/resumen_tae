@@ -55,7 +55,7 @@ def dens_plot_cluster_vs_continuas(df: pd.DataFrame,
 
 
     #fig, ax = plt.subplots()
-    fig = sns.displot(df_show, x=col, hue="cluster", kind="kde")
+    fig = sns.displot(df_show, x=col, hue="cluster")
     #df_show.pivot(columns='cluster', values=col).plot.density(figsize = (7, 7), linewidth = 4)
 
     #plt.xlabel(col)
