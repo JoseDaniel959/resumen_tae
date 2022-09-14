@@ -37,8 +37,8 @@ def tab_show(cluster, df):
 def continuas_show(df):
      options = st.multiselect(
         '¿Que cluster quieres comparar?',
-        [0, 1, 2, 3],
-        [0, 1, 2, 3])
+        [0, 1, 2, 3,4,5],
+        [0, 1, 2, 3,4,5])
     #clusters = [value for value in options.values()]
      option = st.selectbox(
         '¿Qué variable continua desea comparar?',

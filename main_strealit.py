@@ -48,7 +48,7 @@ st.markdown('Beca Pell Grants: https://www.youtube.com/watch?v=1pjYN4eSP1I&ab_ch
 st.markdown('Prestamos federales: (FLoans) https://www.youtube.com/watch?v=1pjYN4eSP1I&ab_channel=TheCollegeInvestor')
 st.markdown('Video sobre ingeniería: https://www.youtube.com/watch?v=I11y_FLlEp8&ab_channel=Explorist')
 st.markdown('Video sobre ciencias de la computación: https://www.youtube.com/watch?v=I11y_FLlEp8&ab_channel=Explorist')
-
+st.markdown('Reporte técnico base de la página: https://marloneau.quarto.pub/segmentacion-de-universidades-en-eeuu-con-enfasis-en-estudiantes-de-areas-relacionadas-a-la-computacion/#an%C3%A1lisis-de-resultados')
 st.markdown('## Segmentos')
 
 
