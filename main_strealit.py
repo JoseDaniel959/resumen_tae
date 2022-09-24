@@ -4,6 +4,7 @@ import numpy as np
 from PIL import Image
 from tabs import *
 import pydeck as pdk
+import operator
 # from matplotlib import pyplot as plt
 # from sklearn import preprocessing
 # from sklearn.cluster import AgglomerativeClustering
@@ -268,17 +269,7 @@ with col9:
     
 st.markdown('### Mapa de las universidades')
 st.markdown('En el siguiente mapa se puede escoger las universidadades por segmento (cada universidad está representada con un circulo). Si pone el cursor encima del circulo, saldrá el nombre de la unviersidad.Para todos los segmentos o agrupaciones o segmentos, la mayoría de las universidades quedan al este de Estados Unidos.')
-
-st.markdown('##### Seleccione el segmento')
-option = st.selectbox(
-    '¿Qué segmento desea comparar?',
-    (0,1,2,3,4,5))
-x = option 
-
-st.write(map(x))
-
-st.markdown('### Estadísticas de las universidades por segmentos y variables ')
-st.markdown('En la siguiente sección puede comparar los cluster con cada una de las siguientes variables')
+st.markdown('##### Selección de variables')
 st.markdown('**Significado de las variables:**')
 st.markdown('**DEBT_MDN:** Se trata de la deuda mediana de préstamos acumulada en la institución por todos los estudiantes prestatarios de préstamos federales que se separan (es decir, se gradúan o se retiran) en un año fiscal determinado.')
 st.markdown('**PCTFLOAN:** proporción de estudiantes universitarios que recibieron préstamos federales en un año determinado.')
@@ -288,8 +279,98 @@ st.markdown('**PCIP11:**: Porcentaje de titulos otorgados en el campo de la Comp
 st.markdown('**PCIP14:** Porcentaje de titulos otorgados en el campo de la  ingeniería')
 st.markdown('**PCIP15:** Porcentaje de titulos otorgados en el campo de la  ingeniería y tecnología')
 st.markdown('**PCIP27:** Porcentaje de titulos en otorgados en el campo de la  matemáticas')
+st.markdown('A cada una de las anteriores variables')
 
-continuas_show(df)
+
+with st.form("my_form"):
+    st.markdown("**Calificación de variables**")
+    
+    option_cat = st.selectbox(
+    '¿Qué tipo de universidad prefiere?',
+    ('Pública','Privada'))
+
+    option_mod = st.selectbox(
+    '¿Qué tipo de modalidad prefiere?',
+    ('Presencial','Virtual'))
+
+    option_1 = st.selectbox(
+    '¿Qué importacian tiene para usted la variable DEBT_MDN?',
+    (0,1,2,3,4,5,6,7,8,9,10))
+
+    option_2 = st.selectbox(
+    '¿Qué importacian tiene para usted la variable PCTFLOAN?',
+    (0,1,2,3,4,5,6,7,8,9,10))
+
+    option_3 = st.selectbox(
+    '¿Qué importacian tiene para usted la variable GRAD_DEBT_MDN?',
+    (0,1,2,3,4,5,6,7,8,9,10))
+
+    option_4 = st.selectbox(
+    '¿Qué importacian tiene para usted la variable PCTPELL?',
+    (0,1,2,3,4,5,6,7,8,9,10))
+
+    option_5 = st.selectbox(
+    '¿Qué importacian tiene para usted la variable PCIP11?',
+    (0,1,2,3,4,5,6,7,8,9,10))
+
+    option_6 = st.selectbox(
+    '¿Qué importacian tiene para usted la variable PCIP14?',
+    (0,1,2,3,4,5,6,7,8,9,10))
+
+    option_7 = st.selectbox(
+    '¿Qué importacian tiene para usted la variable PCIP15?',
+    (0,1,2,3,4,5,6,7,8,9,10))
+
+    option_8 = st.selectbox(
+    '¿Qué importacian tiene para usted la variable PCIP27?',
+    (0,1,2,3,4,5,6,7,8,9,10))
+
+# Every form must have a submit button.
+    submitted = st.form_submit_button("Submit")
+    if submitted:
+            if(option_1 + option_2 + option_3 + option_4 + option_5 + option_6+ option_7 + option_8 <= 10):
+                diccionario =  dict([('DEBT_MDN',option_1) , ('PCTFLOAN',option_2) , ('GRAD_DEBT_MDN',option_3) ,('PCTPELL',option_4) , ('PCIP11',option_5),('PCIP14',option_6),('PCIP15',option_7),('PCIP27',option_8)])
+                diccionario_sorted = sorted(diccionario.items(), key=operator.itemgetter(1), reverse=True)
+                st.write(diccionario_sorted[0])
+                if(option_cat == 'Pública'):
+                    if(diccionario_sorted[0][0] == 'DEBT_MDN'):
+                        st.write('segmento 0')
+                    if((diccionario_sorted[0][0] == 'PCTFLOAN') or (diccionario_sorted[0][0] == 'PCTPELL') or (option_mod == "Presencial") or (diccionario_sorted[0][0] == 'PCIP11') or  (diccionario_sorted[0][0] == 'PCIP14') or (diccionario_sorted[0][0] == 'PCIP15') or  (diccionario_sorted[0][0] == 'PCIP27')):
+                        st.write('segmento 1')
+                    
+                    if((option_mod == 'Virtual') or (diccionario_sorted[0][0] == 'PCIP27')):
+                        st.write('segmento 3')
+                    
+                    if((option_mod == 'Presencial')):
+                        st.write('segmento 4')
+
+                if((option_cat == 'Privada')):
+                    if((diccionario_sorted[0][0] == 'PCTPELL') or (diccionario_sorted[0][0] == 'PCTPELL') or (diccionario_sorted[0][0] == 'PCIP14') or (diccionario_sorted[0][0] == 'PCIP11')):
+                        st.write('segmento 2')
+                if((option_cat == 'Privada')):
+                    if((diccionario_sorted[0][0] == 'DEBT_MDN') or (diccionario_sorted[0][0] == 'PCIP15') ):
+                        st.write('segmento 5')
+
+                        
+
+            else:
+                st.write("Revisar la distribución de los puntos.")
+            
+st.write("Outside the form")
+
+
+
+st.markdown('##### Seleccione el segmento')
+option = st.selectbox(
+    '¿Qué segmento desea comparar?',
+    (0,1,2,3,4,5))
+x = option 
+
+st.write(map(x))
+
+
+
+
 
 
     
