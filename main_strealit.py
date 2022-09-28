@@ -281,6 +281,7 @@ st.markdown('**PCIP15:** Porcentaje de titulos otorgados en el campo de la  inge
 st.markdown('**PCIP27:** Porcentaje de titulos en otorgados en el campo de la  matemáticas')
 st.markdown('A cada una de las anteriores variables')
 
+x=0 ##Variable para comparar segmentos
 
 with st.form("my_form"):
     st.markdown("**Calificación de variables**")
@@ -334,31 +335,29 @@ with st.form("my_form"):
                 st.write(diccionario_sorted[0])
                 if(option_cat == 'Pública'):
                     if(diccionario_sorted[0][0] == 'DEBT_MDN'):
-                        st.write('segmento 0')
+                        st.write('### Segmento 0')
                     if((diccionario_sorted[0][0] == 'PCTFLOAN') or (diccionario_sorted[0][0] == 'PCTPELL') or (option_mod == "Presencial") or (diccionario_sorted[0][0] == 'PCIP11') or  (diccionario_sorted[0][0] == 'PCIP14') or (diccionario_sorted[0][0] == 'PCIP15') or  (diccionario_sorted[0][0] == 'PCIP27')):
-                        st.write('segmento 1')
+                        st.write('### Segmento 1')
                     
                     if((option_mod == 'Virtual') or (diccionario_sorted[0][0] == 'PCIP27')):
-                        st.write('segmento 3')
+                        st.write('### Segmento 3')
                     
                     if((option_mod == 'Presencial')):
-                        st.write('segmento 4')
+                        st.write('### Segmento 4')
 
                 if((option_cat == 'Privada')):
                     if((diccionario_sorted[0][0] == 'PCTPELL') or (diccionario_sorted[0][0] == 'PCTPELL') or (diccionario_sorted[0][0] == 'PCIP14') or (diccionario_sorted[0][0] == 'PCIP11')):
-                        st.write('segmento 2')
+                        st.write('### Segmento 2')
                 if((option_cat == 'Privada')):
                     if((diccionario_sorted[0][0] == 'DEBT_MDN') or (diccionario_sorted[0][0] == 'PCIP15') ):
-                        st.write('segmento 5')
+                        st.write('### Segmento 5')
 
                         
 
             else:
                 st.write("Revisar la distribución de los puntos.")
-            
-st.write("Outside the form")
 
-
+st.write("Teniendo en cuenta el segmento de universidades recomendado, a continuación se presentan los nombres de las universidades del  segmento y su respectiva ubicación en el mapa")
 
 st.markdown('##### Seleccione el segmento')
 option = st.selectbox(
