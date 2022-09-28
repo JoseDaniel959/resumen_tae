@@ -59,16 +59,18 @@ df = pd.read_csv('base1 (2).csv')
 df.rename({'Clusters': 'cluster'}, axis=1, inplace=True)
 
 
-coordenadas = pd.read_csv('sinNulosyConCoordenadas.csv')
+coordenadas = pd.read_csv('sinNulosyConCoordenadasEstado.csv')
 coordenadas['Cluster'] = df['cluster'] 
-coordenadas = coordenadas[["LONGITUDE", "LATITUDE","INSTNM",'Cluster']].dropna(axis = 0,subset = ["LONGITUDE", "LATITUDE"])
+coordenadas = coordenadas[["LONGITUDE", "LATITUDE","INSTNM",'Cluster', 'State']].dropna(axis = 0,subset = ["LONGITUDE", "LATITUDE"])
 
 
 
 
-def map(numeroCluster):
-    
-    coordenadas_show = coordenadas[coordenadas['Cluster'] == option]
+def map(numeroCluster, Estado):
+    coordenadas_mask = coordenadas['Cluster'] == option
+    estado_mask = coordenadas['State'] == option2
+
+    coordenadas_show = coordenadas[coordenadas_mask & estado_mask]
     col1, col2, col3,col4, = st.columns(4)
     if(numeroCluster == 0):
         color = [255, 0, 0]
@@ -76,7 +78,7 @@ def map(numeroCluster):
         loans = Image.open('noloans.webp')
         bachelordegree = Image.open('bachelordegree.png')
         arrowD = Image.open('arrowD.png')
-        st.markdown('### Características del Segmento 0')
+        st.markdown(f'### Características del Segmento 0 en {Estado}')
         with col1:
             st.image(cheap,width=100)
             st.markdown('- Universidades públicas')
@@ -92,7 +94,7 @@ def map(numeroCluster):
       
         
     elif(numeroCluster == 1):
-        st.markdown('### Características del Segmento 1')
+        st.markdown(f'### Características del Segmento 1 en {Estado}')
         expensive = Image.open('expensive.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -111,7 +113,7 @@ def map(numeroCluster):
             st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades en las áreas de interés')
         color = [0, 255, 0]
     elif(numeroCluster == 2):
-        st.markdown('### Características del Segmento 2')
+        st.markdown(f'### Características del Segmento 2 en {Estado}')
         expensive = Image.open('expensive.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -130,7 +132,7 @@ def map(numeroCluster):
             st.markdown('- Segundo mayor en porcentaje de estudiantes graduados de estas universidades en computación e ingeniería y tecnología')
         color = [0, 0, 255]
     elif(numeroCluster == 3):
-        st.markdown('### Características del Segmento 3')
+        st.markdown(f'### Características del Segmento 3 en {Estado}')
         expensive = Image.open('expensive.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -149,7 +151,7 @@ def map(numeroCluster):
             st.markdown('- Bajo porcentaje de estudiantes graduados de estas universidades')
         color = [255, 255, 0]
     elif(numeroCluster == 4):
-        st.markdown('### Características del Segmento 4')
+        st.markdown(f'### Características del Segmento 4 en {Estado}')
         expensive = Image.open('universidad.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -168,7 +170,7 @@ def map(numeroCluster):
             st.markdown('- Pocos estudiantes graduados en las áreas de interés, como en el segmento 3.')
         color = [255, 0, 255]
     elif(numeroCluster == 5):
-        st.markdown('### Características del Segmento 5')
+        st.markdown(f'### Características del Segmento 5 en {Estado}')
         expensive = Image.open('university.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -364,9 +366,16 @@ st.markdown('##### Seleccione el segmento')
 option = st.selectbox(
     '¿Qué segmento desea comparar?',
     (0,1,2,3,4,5))
-x = option 
+x = option
+segmento = x
 
-st.write(map(x))
+option2 = st.selectbox(
+    'seleccione el estado',
+    list(coordenadas['State'].unique()))
+y = option2
+estado = y
+
+st.write(map(segmento, estado))
 
 
 
