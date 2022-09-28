@@ -76,7 +76,7 @@ def map(numeroCluster):
         loans = Image.open('noloans.webp')
         bachelordegree = Image.open('bachelordegree.png')
         arrowD = Image.open('arrowD.png')
-        st.markdown('### Características del Segmento 0')
+        st.markdown('### Universidades del Segmento 0')
         with col1:
             st.image(cheap,width=100)
             st.markdown('- Universidades públicas')
@@ -92,7 +92,7 @@ def map(numeroCluster):
       
         
     elif(numeroCluster == 1):
-        st.markdown('### Características del Segmento 1')
+        st.markdown('### Universidades del Segmento 1')
         expensive = Image.open('expensive.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -111,7 +111,7 @@ def map(numeroCluster):
             st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades en las áreas de interés')
         color = [0, 255, 0]
     elif(numeroCluster == 2):
-        st.markdown('### Características del Segmento 2')
+        st.markdown('### Universidades del Segmento 2')
         expensive = Image.open('expensive.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -130,7 +130,7 @@ def map(numeroCluster):
             st.markdown('- Segundo mayor en porcentaje de estudiantes graduados de estas universidades en computación e ingeniería y tecnología')
         color = [0, 0, 255]
     elif(numeroCluster == 3):
-        st.markdown('### Características del Segmento 3')
+        st.markdown('### Universidades del Segmento 3')
         expensive = Image.open('expensive.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -149,7 +149,7 @@ def map(numeroCluster):
             st.markdown('- Bajo porcentaje de estudiantes graduados de estas universidades')
         color = [255, 255, 0]
     elif(numeroCluster == 4):
-        st.markdown('### Características del Segmento 4')
+        st.markdown('### Universidades del Segmento 4')
         expensive = Image.open('universidad.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -168,7 +168,7 @@ def map(numeroCluster):
             st.markdown('- Pocos estudiantes graduados en las áreas de interés, como en el segmento 3.')
         color = [255, 0, 255]
     elif(numeroCluster == 5):
-        st.markdown('### Características del Segmento 5')
+        st.markdown('### Universidades del Segmento 5')
         expensive = Image.open('university.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -209,7 +209,7 @@ def map(numeroCluster):
         latitude=37.7749295, longitude=-122.4194155, zoom=6, min_zoom=0, max_zoom=15, bearing=0, pitch=0)
 
     # Render
-    r = pdk.Deck(layers=[layer], initial_view_state=view_state,tooltip={"text": "{INSTNM}"})   
+    r = pdk.Deck(layers=[layer], initial_view_state=view_state,tooltip={"text": "{Nombre de la Universidad}"})   
     return r
 
 
@@ -267,9 +267,9 @@ with col9:
    
     #st.set_option('deprecation.showPyplotGlobalUse', False)
     
-st.markdown('### Mapa de las universidades')
-st.markdown('En el siguiente mapa se puede escoger las universidadades por segmento (cada universidad está representada con un circulo). Si pone el cursor encima del circulo, saldrá el nombre de la unviersidad.Para todos los segmentos o agrupaciones o segmentos, la mayoría de las universidades quedan al este de Estados Unidos.')
-st.markdown('##### Selección de variables')
+#st.markdown('### Mapa de las universidades')
+#st.markdown('En el siguiente mapa se puede escoger las universidadades por segmento (cada universidad está representada con un circulo). Si pone el cursor encima del circulo, saldrá el nombre de la unviersidad.Para todos los segmentos o agrupaciones o segmentos, la mayoría de las universidades quedan al este de Estados Unidos.')
+#st.markdown('##### Selección de variables')
 st.markdown('**Significado de las variables:**')
 st.markdown('**DEBT_MDN:** Se trata de la deuda mediana de préstamos acumulada en la institución por todos los estudiantes prestatarios de préstamos federales que se separan (es decir, se gradúan o se retiran) en un año fiscal determinado.')
 st.markdown('**PCTFLOAN:** proporción de estudiantes universitarios que recibieron préstamos federales en un año determinado.')
@@ -279,9 +279,8 @@ st.markdown('**PCIP11:**: Porcentaje de titulos otorgados en el campo de la Comp
 st.markdown('**PCIP14:** Porcentaje de titulos otorgados en el campo de la  ingeniería')
 st.markdown('**PCIP15:** Porcentaje de titulos otorgados en el campo de la  ingeniería y tecnología')
 st.markdown('**PCIP27:** Porcentaje de titulos en otorgados en el campo de la  matemáticas')
-st.markdown('A cada una de las anteriores variables')
+st.markdown('**A cada una de las anteriores variables asigneles un puntaje de 1 a 10 cuya suma final sea 10**')
 
-x=0 ##Variable para comparar segmentos
 
 with st.form("my_form"):
     st.markdown("**Calificación de variables**")
@@ -361,9 +360,12 @@ st.write("Teniendo en cuenta el segmento de universidades recomendado, a continu
 
 st.markdown('##### Seleccione el segmento')
 option = st.selectbox(
-    '¿Qué segmento desea comparar?',
+    '¿Qué segmento se le recomendó?',
     (0,1,2,3,4,5))
-x = option 
+x = option
+
+coordenadas = coordenadas.rename(columns = {"INSTNM":"Nombre de la Universidad"})
+st.dataframe(coordenadas[coordenadas['Cluster'] == option]['Nombre de la Universidad'].reset_index(drop=True))
 
 st.write(map(x))
 
