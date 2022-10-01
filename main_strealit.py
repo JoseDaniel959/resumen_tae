@@ -78,7 +78,7 @@ def map(numeroCluster, Estado):
         loans = Image.open('noloans.webp')
         bachelordegree = Image.open('bachelordegree.png')
         arrowD = Image.open('arrowD.png')
-        st.markdown(f'### Características del Segmento 0 en {Estado}')
+        st.markdown(f'### Universidades del Segmento 0 en {Estado}')
         with col1:
             st.image(cheap,width=100)
             st.markdown('- Universidades públicas')
@@ -94,7 +94,7 @@ def map(numeroCluster, Estado):
       
         
     elif(numeroCluster == 1):
-        st.markdown(f'### Características del Segmento 1 en {Estado}')
+        st.markdown(f'### Universidades del Segmento 1 en {Estado}')
         expensive = Image.open('expensive.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -113,7 +113,7 @@ def map(numeroCluster, Estado):
             st.markdown('- Mayor porcentaje de estudiantes graduados de estas universidades en las áreas de interés')
         color = [0, 255, 0]
     elif(numeroCluster == 2):
-        st.markdown(f'### Características del Segmento 2 en {Estado}')
+        st.markdown(f'### Universidades del Segmento 2 en {Estado}')
         expensive = Image.open('expensive.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -132,7 +132,7 @@ def map(numeroCluster, Estado):
             st.markdown('- Segundo mayor en porcentaje de estudiantes graduados de estas universidades en computación e ingeniería y tecnología')
         color = [0, 0, 255]
     elif(numeroCluster == 3):
-        st.markdown(f'### Características del Segmento 3 en {Estado}')
+        st.markdown('### Universidades del Segmento 3')
         expensive = Image.open('expensive.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -151,7 +151,7 @@ def map(numeroCluster, Estado):
             st.markdown('- Bajo porcentaje de estudiantes graduados de estas universidades')
         color = [255, 255, 0]
     elif(numeroCluster == 4):
-        st.markdown(f'### Características del Segmento 4 en {Estado}')
+        st.markdown('### Universidades del Segmento 4')
         expensive = Image.open('universidad.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -170,7 +170,7 @@ def map(numeroCluster, Estado):
             st.markdown('- Pocos estudiantes graduados en las áreas de interés, como en el segmento 3.')
         color = [255, 0, 255]
     elif(numeroCluster == 5):
-        st.markdown(f'### Características del Segmento 5 en {Estado}')
+        st.markdown('### Universidades del Segmento 5')
         expensive = Image.open('university.png')
         prestamos = Image.open('prestamos.png')
         bachelordegree = Image.open('bachelordegree.png')
@@ -211,7 +211,7 @@ def map(numeroCluster, Estado):
         latitude=37.7749295, longitude=-122.4194155, zoom=6, min_zoom=0, max_zoom=15, bearing=0, pitch=0)
 
     # Render
-    r = pdk.Deck(layers=[layer], initial_view_state=view_state,tooltip={"text": "{INSTNM}"})   
+    r = pdk.Deck(layers=[layer], initial_view_state=view_state,tooltip={"text": "{Nombre de la Universidad}"})
     return r
 
 
@@ -234,54 +234,60 @@ with st.sidebar:
 
 st.markdown('### Proporción de universidades por segmentos')
 
+
 col4,col5 = st.columns(2)
     
 with col4:
-    st.markdown('#### Información sobre los segmentos')
-    st.markdown('')
-    st.markdown('##### Segmento 0')
-    st.markdown('Compuesto por universidades públicas, en donde está el menor porcentaje de estudiantes con un préstamo federal y por tanto la menor deuda media. Sin embargo es el segmento que contiene las universidades con menor oferta de las carreras de interés, por ende es donde menor cantidad de estudiantes graduados en dichos pregrados hay.')
-    st.markdown('##### Segmento 1')
-    st.markdown(' Compuesto por universidades en su mayoría privadas con ánimo de lucros y poseen un mayor porcentaje de estudiantes tanto con préstamo federal como con beca Pell Grants, debido a esto sus estudiantes tienen una deuda media mayor que los segmentos 0 y 2 y es el de mayor deuda media de sus estudiantes graduados (junto con los segmentos 3 y 4). En este segmento es donde se encuentran las universidades con mas oferta presencial de los campos de computación e ingeniería y tecnología, además es donde mayor porcentaje de estudiantes graduados en computación, ingeniería y tecnología y matemáticas hay.')
+    st.markdown("Del gráfico de torda de la derecha podemos ver que:")
+    st.markdown("- El 41% de las universidades están contenidas en el segmento 3.")
+    st.markdown("- El 20% están contenidas en el segmento 1.")
+    st.markdown("- El 17% están en el segmento 6.")
+    st.markdown("- Los segmentos 2, 4 y 5 contienen menos del 10% de las universidades.")
+#    st.markdown('#### Información sobre los segmentos')
+#    st.markdown('')
+#    st.markdown('##### Segmento 0')
+#    st.markdown('Compuesto por universidades públicas, en donde está el menor porcentaje de estudiantes con un préstamo federal y por tanto la menor deuda media. Sin embargo es el segmento que contiene las universidades con menor oferta de las carreras de interés, por ende es donde menor cantidad de estudiantes graduados en dichos pregrados hay.')
+#    st.markdown('##### Segmento 1')
+#    st.markdown(' Compuesto por universidades en su mayoría privadas con ánimo de lucros y poseen un mayor porcentaje de estudiantes tanto con préstamo federal como con beca Pell Grants, debido a esto sus estudiantes tienen una deuda media mayor que los segmentos 0 y 2 y es el de mayor deuda media de sus estudiantes graduados (junto con los segmentos 3 y 4). En este segmento es donde se encuentran las universidades con mas oferta presencial de los campos de computación e ingeniería y tecnología, además es donde mayor porcentaje de estudiantes graduados en computación, ingeniería y tecnología y matemáticas hay.')
 with col5:
     data = coordenadas['Cluster'].value_counts()
     st.pyplot(grafico_torta(data))
         
         
-        
-col6,col7,col8,col9 = st.columns(4)
+
+#col6,col7,col8,col9 = st.columns(4)
     
-with col6:
-    st.markdown('##### Segmento 2')
-    st.markdown('Compuesto únicamente por universidades privadas con ánimo de lucro similar al segmento 0 contiene las universidas con menor oferta de las carreras y menor deuda media de sus estudiantes, pero tiene una mayor oferta que el segmento 0 de computación en la modalidad virtual. Tiene un porcentaje de estudiantes con préstamo federal muy similar a los segmentos 3, 4 y 5 y es el segundo en cuanto a estudiantes con beca Pell Grants. Respecto a los graduados, es el de menor porcentaje de estos en las carreras salvo en computación y en ingeniería y tecnología que es el segundo mayor.')
+#with col6:
+#    st.markdown('##### Segmento 2')
+#    st.markdown('Compuesto únicamente por universidades privadas con ánimo de lucro similar al segmento 0 contiene las universidas con menor oferta de las carreras y menor deuda media de sus estudiantes, pero tiene una mayor oferta que el segmento 0 de computación en la modalidad virtual. Tiene un porcentaje de estudiantes con préstamo federal muy similar a los segmentos 3, 4 y 5 y es el segundo en cuanto a estudiantes con beca Pell Grants. Respecto a los graduados, es el de menor porcentaje de estos en las carreras salvo en computación y en ingeniería y tecnología que es el segundo mayor.')
 
-with col7:
-    st.markdown('##### Segmento 3')
-    st.markdown('Compuesto en su mayoría por universidades públicas y privadas sin ánimo de lucro las cuales no ofertan las carreras de forma presencial, únicamente virtual. A pesar de que tiene un porcentaje similar a los segmentos 2, 4 y 5 de estudiantes con préstamos federales, es el segmento con universidades cuyos estudiantes tienen la segunda mayor deuda media esto quizá provocado porque también tiene el segundo menor porcentaje de estudiantes con beca Pell Grants. Sus universidades son las de menor porcentaje de graduados (junto con el segmento 4) salvo en mátemáticas que tiene el segundo mayor porcentaje de graduados en este campo.')
+#with col7:
+#    st.markdown('##### Segmento 3')
+#    st.markdown('Compuesto en su mayoría por universidades públicas y privadas sin ánimo de lucro las cuales no ofertan las carreras de forma presencial, únicamente virtual. A pesar de que tiene un porcentaje similar a los segmentos 2, 4 y 5 de estudiantes con préstamos federales, es el segmento con universidades cuyos estudiantes tienen la segunda mayor deuda media esto quizá provocado porque también tiene el segundo menor porcentaje de estudiantes con beca Pell Grants. Sus universidades son las de menor porcentaje de graduados (junto con el segmento 4) salvo en mátemáticas que tiene el segundo mayor porcentaje de graduados en este campo.')
 
-with col8:
-    st.markdown('##### Segmento 4')
-    st.markdown('Compuesto únicamente por universidades públicas y privadas sin ánimo de lucro (siendo mayor la cantidad de éstas ultimas en el segmento) las cuales ofertan las carreras únicamente de forma presencial. Como en el segmento 3 tiene un porcentaje similar de estudiantes con préstamos federales a los segmentos 2 y 5, pero es el segmento con universidades cuyos estudiantes tienen la mayor deuda media, ocasionado probablemente también porque es el de menor porcentaje de estudiantes con beca Pell Grants. Respecto al porcentaje de universidades graduados en sus universidades, ocurre aproximadamente lo mismo que en el segmento 3.')
-with col9:
-    st.markdown('##### Segmento 5')
-    st.markdown('Compuesto únicamente por universidades privadas sin ánimo de lucro, las universidades dentro de este grupo son similares en cuanto a su no oferta de las carreras como los segmentos 0 y 2, sin embargo tienen un poco más de oferta en los campos de computación y matemáticas en las modalidades presencial y virtual que estos 2 segmentos anteriormente mencionados. Su deuda media y porcentaje de estudiantes con préstamo federal son similares a los de segmento 1 y 4 respectivamente y es el tercero en cuanto a mayor media de porcentaje de estudiantes con becas Pell Grants. Destaca en que es el segmento con mayor porcentaje de graduados en ingeniería y en general es el tercero con mayor porcentaje de estudiantes graduados para las demás carreras.')
+#with col8:
+#    st.markdown('##### Segmento 4')
+#    st.markdown('Compuesto únicamente por universidades públicas y privadas sin ánimo de lucro (siendo mayor la cantidad de éstas ultimas en el segmento) las cuales ofertan las carreras únicamente de forma presencial. Como en el segmento 3 tiene un porcentaje similar de estudiantes con préstamos federales a los segmentos 2 y 5, pero es el segmento con universidades cuyos estudiantes tienen la mayor deuda media, ocasionado probablemente también porque es el de menor porcentaje de estudiantes con beca Pell Grants. Respecto al porcentaje de universidades graduados en sus universidades, ocurre aproximadamente lo mismo que en el segmento 3.')
+#with col9:
+#    st.markdown('##### Segmento 5')
+#    st.markdown('Compuesto únicamente por universidades privadas sin ánimo de lucro, las universidades dentro de este grupo son similares en cuanto a su no oferta de las carreras como los segmentos 0 y 2, sin embargo tienen un poco más de oferta en los campos de computación y matemáticas en las modalidades presencial y virtual que estos 2 segmentos anteriormente mencionados. Su deuda media y porcentaje de estudiantes con préstamo federal son similares a los de segmento 1 y 4 respectivamente y es el tercero en cuanto a mayor media de porcentaje de estudiantes con becas Pell Grants. Destaca en que es el segmento con mayor porcentaje de graduados en ingeniería y en general es el tercero con mayor porcentaje de estudiantes graduados para las demás carreras.')
 
    
     #st.set_option('deprecation.showPyplotGlobalUse', False)
     
-st.markdown('### Mapa de las universidades')
-st.markdown('En el siguiente mapa se puede escoger las universidadades por segmento (cada universidad está representada con un circulo). Si pone el cursor encima del circulo, saldrá el nombre de la unviersidad.Para todos los segmentos o agrupaciones o segmentos, la mayoría de las universidades quedan al este de Estados Unidos.')
-st.markdown('##### Selección de variables')
-st.markdown('**Significado de las variables:**')
-st.markdown('**DEBT_MDN:** Se trata de la deuda mediana de préstamos acumulada en la institución por todos los estudiantes prestatarios de préstamos federales que se separan (es decir, se gradúan o se retiran) en un año fiscal determinado.')
-st.markdown('**PCTFLOAN:** proporción de estudiantes universitarios que recibieron préstamos federales en un año determinado.')
-st.markdown('**GRAD_DEBT_MDN:** deuda para los estudiantes que completarón sus estudios universitarios.')
-st.markdown('**PCTPELL:** esta variable es el porcentaje de estudiantes los cuales recibieron Pell Grants, el cual es una beca federal que reciben los estudiantes de ingresos bajos')
-st.markdown('**PCIP11:**: Porcentaje de titulos otorgados en el campo de la Computación')
-st.markdown('**PCIP14:** Porcentaje de titulos otorgados en el campo de la  ingeniería')
-st.markdown('**PCIP15:** Porcentaje de titulos otorgados en el campo de la  ingeniería y tecnología')
-st.markdown('**PCIP27:** Porcentaje de titulos en otorgados en el campo de la  matemáticas')
-st.markdown('A cada una de las anteriores variables')
+#st.markdown('### Mapa de las universidades')
+#st.markdown('En el siguiente mapa se puede escoger las universidadades por segmento (cada universidad está representada con un circulo). Si pone el cursor encima del circulo, saldrá el nombre de la unviersidad.Para todos los segmentos o agrupaciones o segmentos, la mayoría de las universidades quedan al este de Estados Unidos.')
+#st.markdown('##### Selección de variables')
+#st.markdown('**Definición de las variables usadas para el análisis:**')
+#st.markdown('**DEBT_MDN:** Se trata de la deuda mediana de préstamos acumulada en la institución por todos los estudiantes prestatarios de préstamos federales que se separan (es decir, se gradúan o se retiran) en un año fiscal determinado.')
+#st.markdown('**PCTFLOAN:** proporción de estudiantes universitarios que recibieron préstamos federales en un año determinado.')
+#st.markdown('**GRAD_DEBT_MDN:** deuda para los estudiantes que completarón sus estudios universitarios.')
+#st.markdown('**PCTPELL:** esta variable es el porcentaje de estudiantes los cuales recibieron Pell Grants, el cual es una beca federal que reciben los estudiantes de ingresos bajos')
+#st.markdown('**PCIP11:**: Porcentaje de titulos otorgados en el campo de la Computación')
+#st.markdown('**PCIP14:** Porcentaje de titulos otorgados en el campo de la  ingeniería')
+#st.markdown('**PCIP15:** Porcentaje de titulos otorgados en el campo de la  ingeniería y tecnología')
+#st.markdown('**PCIP27:** Porcentaje de titulos en otorgados en el campo de la  matemáticas')
+st.markdown('**A cada una de los siguientes campos asigneles un puntaje de 1 a 10 cuya suma final sea menor o igual 80**')
 
 
 with st.form("my_form"):
@@ -296,75 +302,83 @@ with st.form("my_form"):
     ('Presencial','Virtual'))
 
     option_1 = st.selectbox(
-    '¿Qué importacian tiene para usted la variable DEBT_MDN?',
+    '¿Qué importancia tiene para usted que la universidad tenga baja deuda media por parte de los estudiantes?',
     (0,1,2,3,4,5,6,7,8,9,10))
 
     option_2 = st.selectbox(
-    '¿Qué importacian tiene para usted la variable PCTFLOAN?',
+    '¿Qué importancia tiene para usted que la universidad tenga gran cantidad de estudiantes con préstamo federal?',
     (0,1,2,3,4,5,6,7,8,9,10))
 
     option_3 = st.selectbox(
-    '¿Qué importacian tiene para usted la variable GRAD_DEBT_MDN?',
+    '¿Qué importancia tiene para usted que la universidad tenga baja deuda media por parte de los estudiantes graduados?',
     (0,1,2,3,4,5,6,7,8,9,10))
 
     option_4 = st.selectbox(
-    '¿Qué importacian tiene para usted la variable PCTPELL?',
+    '¿Qué importancia tiene para usted que la universidad tenga gran cantidad de estudiantes con beca Pell Grants?',
     (0,1,2,3,4,5,6,7,8,9,10))
 
     option_5 = st.selectbox(
-    '¿Qué importacian tiene para usted la variable PCIP11?',
+    '¿Qué importancia tiene para usted que la universidad tenga gran porcentaje de titulos otorgados en el campo de la Computación?',
     (0,1,2,3,4,5,6,7,8,9,10))
 
     option_6 = st.selectbox(
-    '¿Qué importacian tiene para usted la variable PCIP14?',
+    '¿Qué importancia tiene para usted que la universidad tenga gran porcentaje de titulos otorgados en el campo de la ingeniería?',
     (0,1,2,3,4,5,6,7,8,9,10))
 
     option_7 = st.selectbox(
-    '¿Qué importacian tiene para usted la variable PCIP15?',
+    '¿Qué importancia tiene para usted que la universidad tenga gran porcentaje de titulos otorgados en el campo de la ingeniería y tecnología?',
     (0,1,2,3,4,5,6,7,8,9,10))
 
     option_8 = st.selectbox(
-    '¿Qué importacian tiene para usted la variable PCIP27?',
+    '¿Qué importancia tiene para usted que la universidad tenga gran porcentaje de titulos otorgados en el campo de las matemáticas?',
     (0,1,2,3,4,5,6,7,8,9,10))
 
 # Every form must have a submit button.
     submitted = st.form_submit_button("Submit")
     if submitted:
-            if(option_1 + option_2 + option_3 + option_4 + option_5 + option_6+ option_7 + option_8 <= 10):
+            if(option_1 + option_2 + option_3 + option_4 + option_5 + option_6+ option_7 + option_8 <= 80):
                 diccionario =  dict([('DEBT_MDN',option_1) , ('PCTFLOAN',option_2) , ('GRAD_DEBT_MDN',option_3) ,('PCTPELL',option_4) , ('PCIP11',option_5),('PCIP14',option_6),('PCIP15',option_7),('PCIP27',option_8)])
                 diccionario_sorted = sorted(diccionario.items(), key=operator.itemgetter(1), reverse=True)
-                st.write(diccionario_sorted[0])
+                st.write('### Segmentos recomendados')
                 if(option_cat == 'Pública'):
                     if(diccionario_sorted[0][0] == 'DEBT_MDN'):
-                        st.write('segmento 0')
+                        st.write('### Segmento 0')
                     if((diccionario_sorted[0][0] == 'PCTFLOAN') or (diccionario_sorted[0][0] == 'PCTPELL') or (option_mod == "Presencial") or (diccionario_sorted[0][0] == 'PCIP11') or  (diccionario_sorted[0][0] == 'PCIP14') or (diccionario_sorted[0][0] == 'PCIP15') or  (diccionario_sorted[0][0] == 'PCIP27')):
-                        st.write('segmento 1')
+                        st.write('### Segmento 1')
                     
                     if((option_mod == 'Virtual') or (diccionario_sorted[0][0] == 'PCIP27')):
-                        st.write('segmento 3')
+                        st.write('### Segmento 3')
                     
                     if((option_mod == 'Presencial')):
-                        st.write('segmento 4')
+                        st.write('### Segmento 4')
 
                 if((option_cat == 'Privada')):
+
+                    if((diccionario_sorted[0][0] == 'PCTFLOAN') or (diccionario_sorted[0][0] == 'PCTPELL') or (option_mod == "Presencial") or (diccionario_sorted[0][0] == 'PCIP11') or  (diccionario_sorted[0][0] == 'PCIP14') or (diccionario_sorted[0][0] == 'PCIP15') or  (diccionario_sorted[0][0] == 'PCIP27')):
+                        st.write('### Segmento 1')
+
                     if((diccionario_sorted[0][0] == 'PCTPELL') or (diccionario_sorted[0][0] == 'PCTPELL') or (diccionario_sorted[0][0] == 'PCIP14') or (diccionario_sorted[0][0] == 'PCIP11')):
-                        st.write('segmento 2')
-                if((option_cat == 'Privada')):
+                        st.write('### Segmento 2')
+
+                    if((option_mod == 'Virtual') or (diccionario_sorted[0][0] == 'PCIP27')):
+                        st.write('### Segmento 3')
+
+                    if((option_mod == 'Presencial')):
+                        st.write('### Segmento 4')
+
                     if((diccionario_sorted[0][0] == 'DEBT_MDN') or (diccionario_sorted[0][0] == 'PCIP15') ):
-                        st.write('segmento 5')
+                        st.write('### Segmento 5')
 
                         
 
             else:
-                st.write("Revisar la distribución de los puntos.")
-            
-st.write("Outside the form")
+                st.write("Revisar la distribución de los puntos, la suma de estos debe ser igual a 10.")
 
 
 
 st.markdown('##### Seleccione el segmento')
 option = st.selectbox(
-    '¿Qué segmento desea comparar?',
+    'Seleccione el (o uno de los) segmentos recomendados para visualizarlo:',
     (0,1,2,3,4,5))
 x = option
 segmento = x
