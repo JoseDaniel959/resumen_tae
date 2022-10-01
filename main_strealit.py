@@ -391,6 +391,11 @@ estado = y
 
 st.write(map(segmento, estado))
 
+st.write("Teniendo en cuenta el segmento de universidades recomendado, a continuación se presentan los nombres de las universidades del  segmento y su respectiva ubicación en el mapa")
+coordenadas = coordenadas.rename(columns = {"INSTNM":"Nombre de la Universidad"})
+st.dataframe(coordenadas[coordenadas['Cluster'] == option]['Nombre de la Universidad'].reset_index(drop=True))
+
+
 
 
 
